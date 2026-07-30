@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Панель управления · Дух Лес</title>
+  <link rel="stylesheet" href="admin.css?v=3" />
+</head>
+<body>
+
+  <!-- ЭКРАН ВХОДА -->
+  <section class="login" id="login-screen">
+    <form class="login__card" id="login-form" autocomplete="off">
+      <div class="login__logo">ДУХ ЛЕС</div>
+      <h1 class="login__title">Панель управления</h1>
+      <p class="login__sub">Введите пароль для доступа</p>
+      <input class="login__input" type="password" id="login-pass"
+             placeholder="Пароль" autocomplete="current-password" required />
+      <button class="btn btn--primary login__btn" type="submit" id="login-btn">Войти</button>
+      <p class="login__error" id="login-error" hidden></p>
+      <a class="login__back" href="index.html">← Вернуться на сайт</a>
+    </form>
+  </section>
+
+  <!-- ДАШБОРД -->
+  <main class="dash" id="dash" hidden style="display:none">
+    <header class="dash__top">
+      <div class="dash__brand">Дух&nbsp;Лес · Видеоматериалы</div>
+      <div class="dash__actions">
+        <a class="btn btn--ghost" href="index.html">На сайт</a>
+        <button class="btn btn--ghost" id="logout-btn" type="button">Выйти</button>
+      </div>
+    </header>
+
+    <div class="dash__body">
+
+      <!-- ФОРМА ДОБАВЛЕНИЯ / РЕДАКТИРОВАНИЯ -->
+      <section class="panel">
+        <h2 class="panel__title" id="form-title">Добавить ролик</h2>
+        <form class="vform" id="video-form">
+          <input type="hidden" id="f-id" />
+
+          <label class="vform__row">
+            <span>Название *</span>
+            <input id="f-title" maxlength="160" required />
+          </label>
+
+          <label class="vform__row">
+            <span>Категория (тег)</span>
+            <input id="f-tag" maxlength="40" placeholder="Философия, Традиции…" />
+          </label>
+
+          <label class="vform__row">
+            <span>Длительность</span>
+            <input id="f-duration" maxlength="12" placeholder="12:34" />
+          </label>
+
+          <label class="vform__row">
+            <span>Ссылка на видео</span>
+            <input id="f-url" placeholder="https://youtu.be/… или https://…" />
+          </label>
+
+          <label class="vform__row">
+            <span>Тип</span>
+            <select id="f-type">
+              <option value="">Определить автоматически</option>
+              <option value="youtube">YouTube</option>
+              <option value="link">Внешняя ссылка</option>
+              <option value="mp4">Видеофайл (mp4)</option>
+            </select>
+          </label>
+
+          <label class="vform__row">
+            <span>Превью (URL картинки)</span>
+            <input id="f-thumb" placeholder="Пусто = авто-превью YouTube" />
+          </label>
+
+          <div class="vform__uploads">
+            <label class="upload">
+              <span>⬆ Загрузить превью</span>
+              <input type="file" id="f-thumb-file" accept="image/*" hidden />
+            </label>
+            <label class="upload">
+              <span>⬆ Загрузить mp4</span>
+              <input type="file" id="f-video-file" accept="video/mp4,video/webm" hidden />
+            </label>
+            <span class="upload__status" id="upload-status"></span>
+          </div>
+
+          <label class="vform__row vform__row--area">
+            <span>Описание</span>
+            <textarea id="f-desc" maxlength="600" rows="3"
+                      placeholder="Короткое описание ролика"></textarea>
+          </label>
+
+          <div class="vform__buttons">
+            <button class="btn btn--primary" type="submit" id="save-btn">Добавить</button>
+            <button class="btn btn--ghost" type="button" id="reset-btn" hidden>Отмена</button>
+          </div>
+          <p class="vform__msg" id="form-msg" hidden></p>
+        </form>
+      </section>
+
+      <!-- СПИСОК РОЛИКОВ -->
+      <section class="panel">
+        <h2 class="panel__title">Все ролики (<span id="count">0</span>)</h2>
+        <p class="panel__hint">Перетаскивать не нужно — используйте стрелки ↑ ↓ для порядка.</p>
+        <div class="vlist" id="video-list"></div>
+      </section>
+
+    </div>
+
+    <!-- КАТАЛОГ МАСЕЛ: наличие, остаток, видимость на сайте -->
+    <div class="dash__body dash__body--wide">
+      <section class="panel panel--wide">
+        <h2 class="panel__title">Каталог масел (<span id="cat-count">0</span>)</h2>
+        <p class="panel__hint">
+          «В наличии» — выключите, чтобы товар остался на сайте, но был затемнён и недоступен для заказа.
+          «Показывать на сайте» — выключите, чтобы товар полностью пропал с витрины.
+        </p>
+        <div class="clist" id="catalog-list"></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="admin.js?v=3"></script>
+</body>
+</html>

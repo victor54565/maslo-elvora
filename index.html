@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ELVORA — Натуральные масла</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=32" />
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <linearGradient id="starGrad" gradientUnits="userSpaceOnUse"
+        x1="0" y1="0" x2="8" y2="8" spreadMethod="reflect">
+        <stop offset="0%" stop-color="#F3E3B8" />
+        <stop offset="50%" stop-color="#D4B36A" />
+        <stop offset="100%" stop-color="#8C6B2F" />
+        <animateTransform attributeName="gradientTransform" type="translate"
+          values="-8 0; 8 0; -8 0" dur="6s" repeatCount="indefinite" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- ══════════════════════════════════════
+       NAV
+  ══════════════════════════════════════ -->
+  <nav class="nav anim-nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        <span>
+          <span class="nav__logo-text">ELVORA</span>
+          <span class="nav__logo-mark">натуральные масла</span>
+        </span>
+      </a>
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="#catalog" class="nav__link">Каталог</a></li>
+        <li><a href="#about" class="nav__link">О бренде</a></li>
+        <li><a href="#benefits" class="nav__link">Преимущества</a></li>
+        <li><a href="#usage" class="nav__link">Применение</a></li>
+        <li><a href="#videos" class="nav__link">Видео</a></li>
+        <li><a href="#reviews" class="nav__link">Отзывы</a></li>
+        <li><a href="#contacts" class="nav__link">Контакты</a></li>
+        <li class="nav__menu-cta-item"><a href="#checkout" class="nav__mobile-cta">Заказать</a></li>
+      </ul>
+      <a href="#checkout" class="nav__cta">Заказать</a>
+      <button class="nav__burger" id="nav-burger" aria-label="Меню" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       BLOCK 1 — HERO
+  ══════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__overlay"></div>
+    <div class="hero__fade-bottom"></div>
+    <div class="hero__mark">ELVORA</div>
+
+    <div class="hero__inner">
+      <div class="hero__content">
+
+        <p class="hero__eyebrow anim-fade" style="--d:.15s">
+          ELVORA · НАТУРАЛЬНЫЕ МАСЛА
+        </p>
+
+        <h1 class="hero__title anim-fade" style="--d:.35s;">
+          Коллекция<br><em>натуральных масел</em>
+        </h1>
+
+        <p class="hero__subtitle anim-fade" style="--d:.55s">
+          22 наименования в каталоге. Объёмы 100, 250 и 500 мл.
+          Доставка по Казахстану, оформление заказа в WhatsApp.
+        </p>
+
+        <div class="hero__actions anim-fade" style="--d:.75s">
+          <a href="#catalog" class="btn btn--primary">Смотреть каталог</a>
+          <a href="#checkout" class="btn btn--outline">Оформить заказ</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom-right horizontal glass widget -->
+    <div class="hero-glass anim-fade" style="--d:1.0s">
+      <div class="hero-glass__cols">
+
+        <div class="hero-glass__col">
+          <div class="hero-glass__icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3C12 3 6.5 9.6 6.5 14.2C6.5 17.4 8.96 20 12 20C15.04 20 17.5 17.4 17.5 14.2C17.5 9.6 12 3 12 3Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <strong>22 масла</strong>
+          <span>в каталоге</span>
+        </div>
+
+        <div class="hero-glass__sep"></div>
+
+        <div class="hero-glass__col">
+          <div class="hero-glass__icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9.5 2.5h5M10 2.5v3.2c0 .6-.2 1.1-.6 1.5L7.9 8.7c-.6.6-.9 1.4-.9 2.2v8.2c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2v-8.2c0-.8-.3-1.6-.9-2.2l-1.5-1.5a2.1 2.1 0 0 1-.6-1.5V2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <strong>100 · 250 · 500 мл</strong>
+          <span>объём на выбор</span>
+        </div>
+
+        <div class="hero-glass__sep"></div>
+
+        <div class="hero-glass__col">
+          <div class="hero-glass__icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 7.5h11v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M14 10.5h4l3 3v3h-7z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="7" cy="18.5" r="1.6" stroke="currentColor" stroke-width="1.4"/><circle cx="17.5" cy="18.5" r="1.6" stroke="currentColor" stroke-width="1.4"/></svg>
+          </div>
+          <strong>Доставка</strong>
+          <span>по Казахстану</span>
+        </div>
+
+      </div>
+
+      <div class="hero-glass__divider"></div>
+
+      <div class="hero-glass__footer">
+        <svg viewBox="0 0 20 20" fill="none" class="hero-glass__check">
+          <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M6.5 10L9 12.5L13.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p>Заказ и консультация — WhatsApp +7 771 281 5115</p>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="section-divider">
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BLOCK 2 — ABOUT / PHILOSOPHY
+  ══════════════════════════════════════ -->
+  <section class="about" id="about">
+    <div class="about__bg"></div>
+    <div class="block-fade-top"></div>
+    <div class="block-fade-bottom"></div>
+    <div class="about__container">
+
+      <div class="about__grid">
+
+        <!-- LEFT COLUMN -->
+        <div class="about__left">
+
+          <span class="about__badge reveal-up" data-delay="0">О НАШЕЙ ФИЛОСОФИИ</span>
+
+          <h2 class="about__title reveal-up" data-delay="80">
+            Дух Лес —<br>
+            <em>Первозданная Чистота</em><br>
+            в Каждой Капле
+          </h2>
+
+          <p class="about__text reveal-up" data-delay="160">
+            Мы возрождаем древние традиции бережного взаимодействия с природой.
+            Наш отвар и экстракты из дикорастущих мухоморов — это полностью
+            натуральный, экологически чистый продукт, созданный самой природой.
+            Никакой химии, только бережная сибирская технология экстракции,
+            сохраняющая истинную силу и дух нетронутого леса для вашей
+            энергии и фокуса.
+          </p>
+
+          <a href="#benefits" class="about__cta about__cta--desktop reveal-up" data-delay="240">
+            Наши Преимущества
+            <svg viewBox="0 0 20 20" fill="none" class="about__cta-arrow">
+              <path d="M4 10H16M11 5L16 10L11 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+        </div>
+
+        <!-- Правая колонка с фотографией удалена: изображение убрано,
+             блок стал одноколоночным. -->
+
+      </div><!-- /about__grid -->
+
+      <!-- Full-width cards row -->
+      <div class="about__cards-row">
+
+        <div class="about__card reveal-up" data-delay="100">
+          <div class="about__card-icon">
+            <svg viewBox="0 0 32 32" fill="none">
+              <path d="M28 4C28 4 19 4 12 11C5 18 4 28 4 28C4 28 9 26 13.5 21.5C13.5 21.5 15 25.5 18.5 28" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 28L12 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="about__card-body">
+            <h3 class="about__card-title">Натурально на 100%</h3>
+            <p class="about__card-text">Сбор в девственных, экологически чистых лесах Сибири.</p>
+          </div>
+        </div>
+
+        <div class="about__card reveal-up" data-delay="200">
+          <div class="about__card-icon">
+            <svg viewBox="0 0 32 32" fill="none">
+              <circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="16" cy="16" r="6" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 2"/>
+              <path d="M16 5V2M16 30V27M5 16H2M30 16H27" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M24 8L26 6M8 24L6 26" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="about__card-body">
+            <h3 class="about__card-title">Древний Рецепт</h3>
+            <p class="about__card-text">Опираемся на традиционные методы и бережную ручную обработку.</p>
+          </div>
+        </div>
+
+        <div class="about__card reveal-up" data-delay="300">
+          <div class="about__card-icon">
+            <svg viewBox="0 0 32 32" fill="none">
+              <path d="M16 3L5 7V16C5 22.08 9.86 27.74 16 29C22.14 27.74 27 22.08 27 16V7L16 3Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M11 16L14.5 19.5L21 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="about__card-body">
+            <h3 class="about__card-title">Контроль Качества</h3>
+            <p class="about__card-text">Лабораторное тестирование, полностью безопасный и чистый состав.</p>
+          </div>
+        </div>
+
+      </div><!-- /about__cards-row -->
+
+    </div><!-- /about__container -->
+  </section>
+
+  <div class="section-divider">
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       BLOCK 8 — ПРЕИМУЩЕСТВА (ВТОРАЯ ВОЛНА)
+  ══════════════════════════════════════ -->
+  <section class="benefits" id="benefits">
+    <div class="benefits__bg"></div>
+    <div class="block-fade-top"></div>
+    <div class="block-fade-bottom"></div>
+    <div class="benefits__container">
+
+      <div class="benefits__header reveal-up" data-delay="0">
+        <span class="benefits__badge">ПРЕИМУЩЕСТВА</span>
+        <h2 class="benefits__title">Почему Выбирают<br><em>ELVORA</em></h2>
+      </div>
+
+      <div class="benefits__deck-wrap reveal-up" data-delay="80">
+
+        <button class="benefits__nav benefits__nav--prev benefits__nav--desktop" id="benefits-prev" aria-label="Предыдущие карточки">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M12.5 4L6.5 10L12.5 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <!-- Кнопки для мобильного: вверху (назад слева, вперёд справа) -->
+        <div class="benefits__nav-mobile-top">
+          <button class="benefits__nav benefits__nav--prev benefits__nav--mobile" aria-label="Предыдущие карточки">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M12.5 4L6.5 10L12.5 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="benefits__nav benefits__nav--next benefits__nav--mobile" aria-label="Следующие карточки">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M7.5 4L13.5 10L7.5 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+        <div class="benefits__deck" id="benefits-deck">
+
+          <!-- ЛЕВАЯ КОЛОДА: 01, 03, 05 -->
+          <div class="benefits__stack benefits__stack--left" id="benefits-stack-left">
+
+            <div class="benefits__card" data-card>
+              <div class="benefits__card-top">
+                <div class="benefits__card-icon">
+                  <svg viewBox="0 0 40 40" fill="none"><path d="M20 4L6 9V20C6 27.73 12.27 34.6 20 36C27.73 34.6 34 27.73 34 20V9L20 4Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 20L18 24L26 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="benefits__card-num">01</span>
+              </div>
+              <h3 class="benefits__card-title">Лабораторный Контроль</h3>
+              <p class="benefits__card-text">Каждая партия проходит независимое лабораторное тестирование на содержание мускимола, отсутствие тяжёлых металлов, пестицидов и патогенов. Протоколы анализов доступны по запросу.</p>
+            </div>
+
+            <div class="benefits__card" data-card>
+              <div class="benefits__card-top">
+                <div class="benefits__card-icon">
+                  <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13" stroke="currentColor" stroke-width="1.8"/><path d="M14 20C14 23.31 16.69 26 20 26C23.31 26 26 23.31 26 20C26 16.69 23.31 14 20 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M20 8V5M20 35V32M8 20H5M35 20H32" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </div>
+                <span class="benefits__card-num">03</span>
+              </div>
+              <h3 class="benefits__card-title">Без Иботеновой Кислоты</h3>
+              <p class="benefits__card-text">Наша фирменная термическая обработка полностью конвертирует иботеновую кислоту в безопасный мускимол. Результат — чистый, предсказуемый эффект.</p>
+            </div>
+
+            <div class="benefits__card" data-card>
+              <div class="benefits__card-top">
+                <div class="benefits__card-icon">
+                  <svg viewBox="0 0 40 40" fill="none"><path d="M10 30C10 30 8 16 20 8C32 16 30 30 30 30C22 34 18 34 10 30Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 8V30" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </div>
+                <span class="benefits__card-num">05</span>
+              </div>
+              <h3 class="benefits__card-title">Экологичность Производства</h3>
+              <p class="benefits__card-text">Используем безотходные технологии переработки: биомасса идёт на удобрения, вода очищается и возвращается в природный цикл. Минимальный углеродный след на каждом этапе.</p>
+            </div>
+
+          </div>
+
+          <!-- ПРАВАЯ КОЛОДА: 02, 04, 06 -->
+          <div class="benefits__stack benefits__stack--right" id="benefits-stack-right">
+
+            <div class="benefits__card" data-card>
+              <div class="benefits__card-top">
+                <div class="benefits__card-icon">
+                  <svg viewBox="0 0 40 40" fill="none"><path d="M20 4C20 4 8 14 8 23C8 29.63 13.37 35 20 35C26.63 35 32 29.63 32 23C32 14 20 4 20 4Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 24C15 27.31 17.24 30 20 30" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </div>
+                <span class="benefits__card-num">02</span>
+              </div>
+              <h3 class="benefits__card-title">100% Натуральность</h3>
+              <p class="benefits__card-text">Никаких синтетических добавок, консервантов или красителей. Только дикорастущий мухомор из сибирской тайги и родниковая вода.</p>
+            </div>
+
+            <div class="benefits__card" data-card>
+              <div class="benefits__card-top">
+                <div class="benefits__card-icon">
+                  <svg viewBox="0 0 40 40" fill="none"><path d="M36 5C36 5 24 5 15 14C6 23 5 36 5 36C5 36 11 33.5 16.5 28C16.5 28 18.5 33.5 23 36" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 36L14 27" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </div>
+                <span class="benefits__card-num">04</span>
+              </div>
+              <h3 class="benefits__card-title">Ответственный Сбор</h3>
+              <p class="benefits__card-text">Мы работаем только с семьями потомственных сборщиков Западной Сибири. Собираем не более 30% грибниц в каждом ареале, давая лесу восстановиться. Каждый сбор документируется с GPS-привязкой и датой.</p>
+            </div>
+
+            <div class="benefits__card" data-card>
+              <div class="benefits__card-top">
+                <div class="benefits__card-icon">
+                  <svg viewBox="0 0 40 40" fill="none"><path d="M20 5L8 10V19C8 27 13 33 20 35C27 33 32 27 32 19V10L20 5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 20L18 24L27 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="benefits__card-num">06</span>
+              </div>
+              <h3 class="benefits__card-title">Гарантия Подлинности</h3>
+              <p class="benefits__card-text">Каждая партия маркируется уникальным QR-кодом для проверки подлинности. Никаких подделок — полная прослеживаемость пути от леса до бутылки.</p>
+            </div>
+
+          </div>
+
+        </div><!-- /deck -->
+
+        <!-- Кнопки для мобильного: внизу (назад слева, вперёд справа) -->
+        <div class="benefits__nav-mobile-bottom">
+          <button class="benefits__nav benefits__nav--prev benefits__nav--mobile" aria-label="Предыдущие карточки">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M12.5 4L6.5 10L12.5 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="benefits__nav benefits__nav--next benefits__nav--mobile" aria-label="Следующие карточки">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M7.5 4L13.5 10L7.5 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+        <button class="benefits__nav benefits__nav--next benefits__nav--desktop" id="benefits-next" aria-label="Следующие карточки">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M7.5 4L13.5 10L7.5 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+      </div><!-- /deck-wrap -->
+    </div><!-- /container -->
+  </section>
+
+  <div class="section-divider">
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BLOCK 7 — ПРИМЕНЕНИЕ И ХРАНЕНИЕ
+  ══════════════════════════════════════ -->
+  <section class="usage" id="usage">
+    <div class="usage__bg"></div>
+    <div class="block-fade-top"></div>
+    <div class="block-fade-bottom"></div>
+    <div class="usage__container">
+
+      <div class="usage__header reveal-up" data-delay="0">
+        <span class="usage__badge">ПРИМЕНЕНИЕ И ХРАНЕНИЕ</span>
+        <h2 class="usage__title">Как Использовать<br><em>Экстракт Правильно</em></h2>
+      </div>
+
+      <div class="usage__carousel reveal-scale" data-delay="120">
+        <div class="usage__stage" id="usage-stage">
+
+          <div class="usage__card">
+            <div class="usage__icon">
+              <svg viewBox="0 0 32 32" fill="none"><path d="M16 4C16 4 8 10 8 18C8 22.42 11.58 26 16 26C20.42 26 24 22.42 24 18C24 10 16 4 16 4Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19C12 21.21 13.79 23 16 23" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <span class="usage__step">Этап 01</span>
+            <h3 class="usage__card-title">Дозировка</h3>
+            <p class="usage__card-text">Начните с 5–10 капель в небольшом количестве воды. Увеличивайте постепенно — не более 20 капель в день. Первый приём — утром натощак.</p>
+          </div>
+
+          <div class="usage__card">
+            <div class="usage__icon">
+              <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="1.6"/><path d="M16 10V16L20 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="usage__step">Этап 02</span>
+            <h3 class="usage__card-title">Время Приёма</h3>
+            <p class="usage__card-text">Утром для энергии и фокуса. За 30 минут до медитации или творческой работы. Не рекомендуется принимать после 18:00.</p>
+          </div>
+
+          <div class="usage__card">
+            <div class="usage__icon">
+              <svg viewBox="0 0 32 32" fill="none"><rect x="8" y="6" width="16" height="22" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M12 6V5C12 4.45 12.45 4 13 4H19C19.55 4 20 4.45 20 5V6" stroke="currentColor" stroke-width="1.6"/><path d="M12 14H20M12 18H17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <span class="usage__step">Этап 03</span>
+            <h3 class="usage__card-title">Курс Приёма</h3>
+            <p class="usage__card-text">Рекомендованный курс: 21 день приёма, 7 дней паузы. Эффект накапливается постепенно. Вести дневник ощущений — это ваш лучший инструмент.</p>
+          </div>
+
+          <div class="usage__card">
+            <div class="usage__icon">
+              <svg viewBox="0 0 32 32" fill="none"><path d="M6 16C6 22.63 10.48 28 16 28C21.52 28 26 22.63 26 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M16 4V16M10 10L16 4L22 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="usage__step">Этап 04</span>
+            <h3 class="usage__card-title">Хранение</h3>
+            <p class="usage__card-text">В прохладном тёмном месте, при температуре +4°–+8°C. После вскрытия использовать в течение 30 дней. Не допускать попадания прямых солнечных лучей.</p>
+          </div>
+
+          <div class="usage__card">
+            <div class="usage__icon">
+              <svg viewBox="0 0 32 32" fill="none"><path d="M16 3L5 7V16C5 22.08 9.86 27.74 16 29C22.14 27.74 27 22.08 27 16V7L16 3Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 16L14.5 19.5L21 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="usage__step">Этап 05</span>
+            <h3 class="usage__card-title">Противопоказания</h3>
+            <p class="usage__card-text">Беременность и период лактации. Возраст до 18 лет. Тяжёлые сердечно-сосудистые заболевания. Обязательна консультация врача.</p>
+          </div>
+
+          <div class="usage__card">
+            <div class="usage__icon">
+              <svg viewBox="0 0 32 32" fill="none"><path d="M28 4C28 4 19 4 12 11C5 18 4 28 4 28C4 28 9 26 13.5 21.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="22" cy="10" r="3" stroke="currentColor" stroke-width="1.6"/></svg>
+            </div>
+            <span class="usage__step">Этап 06</span>
+            <h3 class="usage__card-title">Смешивание</h3>
+            <p class="usage__card-text">Добавляйте в тёплую воду, чай или молоко. Не смешивать с алкоголем. Хорошо сочетается с адаптогенами: ашваганда, родиола, чага.</p>
+          </div>
+
+        </div><!-- /stage -->
+
+        <button class="usage__nav usage__nav--prev" id="usage-prev" aria-label="Назад">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Назад</span>
+        </button>
+        <button class="usage__nav usage__nav--next" id="usage-next" aria-label="Вперёд">
+          <span>Вперёд</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div class="usage__dots" id="usage-dots"></div>
+      </div><!-- /carousel -->
+    </div><!-- /container -->
+  </section>
+
+  <div class="section-divider">
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BLOCK 10 — ВИДЕО МАТЕРИАЛЫ
+  ══════════════════════════════════════ -->
+  <section class="videos" id="videos">
+    <div class="videos__bg"></div>
+    <div class="block-fade-top"></div>
+    <div class="block-fade-bottom"></div>
+    <div class="videos__container">
+
+      <div class="videos__header reveal-up" data-delay="0">
+        <span class="videos__badge">ВИДЕО МАТЕРИАЛЫ</span>
+        <h2 class="videos__title">Тропы к Первоистокам.<br><em>Видео-Архив</em></h2>
+        <p class="videos__desc">Погрузитесь в философию и культуру бережного взаимодействия с природой. Наши видеоматериалы — это путеводитель по осознанному применению, традициям и методам экстракции, которые мы храним и развиваем.</p>
+      </div>
+
+      <!-- Грид рендерится из api/videos.php (см. main.js, модуль Videos CMS) -->
+      <div class="videos__grid" id="videos-grid" aria-live="polite"></div>
+
+      <!-- Состояние загрузки / пустоты -->
+      <p class="videos__state" id="videos-state">Загрузка видеоматериалов…</p>
+
+      <!-- Пагинация (появляется, когда страниц больше одной) -->
+      <nav class="videos__pagination" id="videos-pagination" aria-label="Страницы видео"></nav>
+    </div><!-- /container -->
+  </section>
+
+  <div class="section-divider">
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BLOCK 9 — ОТЗЫВЫ КЛИЕНТОВ (КАРУСЕЛЬ)
+  ══════════════════════════════════════ -->
+  <section class="reviews" id="reviews">
+    <div class="reviews__bg"></div>
+    <div class="block-fade-top"></div>
+    <div class="block-fade-bottom"></div>
+    <div class="reviews__container">
+
+      <div class="reviews__header reveal-up" data-delay="0">
+        <span class="reviews__badge">ОТЗЫВЫ</span>
+        <h2 class="reviews__title">Что Говорят<br><em>Наши Клиенты</em></h2>
+        <div class="reviews__summary">
+          <span class="reviews__avg">4.9</span>
+          <div class="reviews__stars-row">
+            <svg viewBox="0 0 16 16" fill="url(#starGrad)"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.5l-3.7 1.8.7-4.1-3-2.9 4.2-.7z"/></svg>
+            <svg viewBox="0 0 16 16" fill="url(#starGrad)"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.5l-3.7 1.8.7-4.1-3-2.9 4.2-.7z"/></svg>
+            <svg viewBox="0 0 16 16" fill="url(#starGrad)"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.5l-3.7 1.8.7-4.1-3-2.9 4.2-.7z"/></svg>
+            <svg viewBox="0 0 16 16" fill="url(#starGrad)"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.5l-3.7 1.8.7-4.1-3-2.9 4.2-.7z"/></svg>
+            <svg viewBox="0 0 16 16" fill="url(#starGrad)"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.5l-3.7 1.8.7-4.1-3-2.9 4.2-.7z"/></svg>
+          </div>
+          <span class="reviews__count">на основе 648 отзывов</span>
+        </div>
+      </div>
+
+      <!-- Infinite marquee -->
+      <div class="reviews__marquee">
+        <div class="reviews__marquee-inner">
+        <div class="reviews__track">
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">АМ</div>
+                <div>
+                  <div class="reviews__author">Алексей М.</div>
+                  <div class="reviews__date">15 мая 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Заказал Сому Пантерную после долгих раздумий. Эффект почувствовал на 4-й день — ясность мыслей, меньше тревоги, сон стал глубже. Через три недели жена заметила, что я стал спокойнее. Буду заказывать снова.»</p>
+              <span class="reviews__product">Сома Пантерная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">ЕК</div>
+                <div>
+                  <div class="reviews__author">Елена К.</div>
+                  <div class="reviews__date">2 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Практикую медитацию уже 8 лет. С экстрактом Дух Лес сессии стали на другом уровне. Концентрация держится дольше, тело расслаблено, а ум при этом очень живой. Упаковка шикарная, доставка быстрая.»</p>
+              <span class="reviews__product">Сома Красная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">ДТ</div>
+                <div>
+                  <div class="reviews__author">Дмитрий Т.</div>
+                  <div class="reviews__date">18 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Скептически относился к подобным продуктам, но дал шанс. Второй месяц курса — сплю без тревожных мыслей, работоспособность выросла. Честный бренд: пишут состав, показывают анализы. Редкость сейчас.»</p>
+              <span class="reviews__product">Сома Пантерная 250мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">НВ</div>
+                <div>
+                  <div class="reviews__author">Наталья В.</div>
+                  <div class="reviews__date">24 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)" opacity="0.35"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Принимаю Сому Красную третий месяц. Ощущение, что энергетика выровнялась, стала стабильнее. Единственное — хотелось бы 100мл для пробы. В остальном всё на высшем уровне, рекомендую подругам.»</p>
+              <span class="reviews__product">Сома Красная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">ИП</div>
+                <div>
+                  <div class="reviews__author">Игорь П.</div>
+                  <div class="reviews__date">27 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Спортсмен, тренируюсь 5 раз в неделю. Добавил экстракт для восстановления — результат заметен: меньше мышечной усталости на следующий день, сон восстанавливающий. Продукт честный, состав понятный.»</p>
+              <span class="reviews__product">Сома Пантерная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">МС</div>
+                <div>
+                  <div class="reviews__author">Марина С.</div>
+                  <div class="reviews__date">28 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Красивая упаковка, быстрая доставка в Алматы. Но главное — эффект реальный. Тревожность снизилась уже через неделю. Для меня это было главной целью. Дух Лес — нашла свой продукт.»</p>
+              <span class="reviews__product">Сома Красная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">БА</div>
+                <div>
+                  <div class="reviews__author">Батыр А.</div>
+                  <div class="reviews__date">28 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Өте құнды өнім. Ұйқы төнеді түскі сағы болса, енді нормальды уйықтап жатырмын. Балалы адамдарға ынамдар ғана сынап көршінші деп ойлаймын. Баға сыйлайма деп санамаймын.»</p>
+              <span class="reviews__product">Сома Красная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">НМ</div>
+                <div>
+                  <div class="reviews__author">Наталия М.</div>
+                  <div class="reviews__date">25 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Нашла в интернете случайно, первый раз такое вижу. Дорговата, но решила рискнуть. Месяц пью — голова яснее стала, раньше от забот не спешалось нормально. Теперь рекомендую всем знакомым.»</p>
+              <span class="reviews__product">Сома Пантерная 250мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">КЧ</div>
+                <div>
+                  <div class="reviews__author">Карина Ч.</div>
+                  <div class="reviews__date">19 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)" opacity="0.35"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Честно, жду большего. Пила две недели, какой-то эффект ощущаю, но не грандиозный. Может быть, нужно дольше? Упаковка классная, запах приятный. Может попробую ещё месяц и решу.»</p>
+              <span class="reviews__product">Сома Красная 250мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">РК</div>
+                <div>
+                  <div class="reviews__author">Рахим К.</div>
+                  <div class="reviews__date">14 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Сағаттарында таппай отырғам. Еңбек істеген адамдарға ұсынамын. Соттап соcomarca аза, тіңде ынампын бәрінің. Интернетте бәлгіліңіз құрметтеп сізді ағындатындым.»</p>
+              <span class="reviews__product">Сома Пантерная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">ДГ</div>
+                <div>
+                  <div class="reviews__author">Дарья Г.</div>
+                  <div class="reviews__date">10 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Подруга пила, я попросила её упаковку посмотреть. Купила себе, теперь уже полтора месяца. Очень нравится, что это натуральное, а не какая-нибудь химия. Упаковка красивая, можно подарить даже.»</p>
+              <span class="reviews__product">Сома Красная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">МА</div>
+                <div>
+                  <div class="reviews__author">Максим А.</div>
+                  <div class="reviews__date">6 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«После лыжных выходных спина болела ужасно. Жена купила Сому, пил три дня. Спина перестала беспокоить. Может совпадение, но доволен. Буду ещё покупать.»</p>
+              <span class="reviews__product">Сома Пантерная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">АИ</div>
+                <div>
+                  <div class="reviews__author">Айгуль И.</div>
+                  <div class="reviews__date">2 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Балалы, түнде күте алмайды деген істі оңай жай. Төрт апта пайдаланып жатырмын, фереңлі, тек қана өнең істі беттейді іс. Баршаға ынамдар ғана тамаша.»</p>
+              <span class="reviews__product">Сома Красная 500мл</span>
+            </div>
+
+          </div><!-- /track (оригинал) -->
+
+        <!-- Дубль для бесконечной петли -->
+        <div class="reviews__track reviews__track--clone" aria-hidden="true">
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">АМ</div>
+                <div>
+                  <div class="reviews__author">Алексей М.</div>
+                  <div class="reviews__date">15 мая 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Заказал Сому Пантерную после долгих раздумий. Эффект почувствовал на 4-й день — ясность мыслей, меньше тревоги, сон стал глубже. Через три недели жена заметила, что я стал спокойнее. Буду заказывать снова.»</p>
+              <span class="reviews__product">Сома Пантерная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">ЕК</div>
+                <div>
+                  <div class="reviews__author">Елена К.</div>
+                  <div class="reviews__date">2 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Практикую медитацию уже 8 лет. С экстрактом Дух Лес сессии стали на другом уровне. Концентрация держится дольше, тело расслаблено, а ум при этом очень живой. Упаковка шикарная, доставка быстрая.»</p>
+              <span class="reviews__product">Сома Красная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">ДТ</div>
+                <div>
+                  <div class="reviews__author">Дмитрий Т.</div>
+                  <div class="reviews__date">18 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Скептически относился к подобным продуктам, но дал шанс. Второй месяц курса — сплю без тревожных мыслей, работоспособность выросла. Честный бренд: пишут состав, показывают анализы. Редкость сейчас.»</p>
+              <span class="reviews__product">Сома Пантерная 250мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">НВ</div>
+                <div>
+                  <div class="reviews__author">Наталья В.</div>
+                  <div class="reviews__date">24 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)" opacity="0.35"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Принимаю Сому Красную третий месяц. Ощущение, что энергетика выровнялась, стала стабильнее. Единственное — хотелось бы 100мл для пробы. В остальном всё на высшем уровне, рекомендую подругам.»</p>
+              <span class="reviews__product">Сома Красная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">ИП</div>
+                <div>
+                  <div class="reviews__author">Игорь П.</div>
+                  <div class="reviews__date">27 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Спортсмен, тренируюсь 5 раз в неделю. Добавил экстракт для восстановления — результат заметен: меньше мышечной усталости на следующий день, сон восстанавливающий. Продукт честный, состав понятный.»</p>
+              <span class="reviews__product">Сома Пантерная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">МС</div>
+                <div>
+                  <div class="reviews__author">Марина С.</div>
+                  <div class="reviews__date">28 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Красивая упаковка, быстрая доставка в Алматы. Но главное — эффект реальный. Тревожность снизилась уже через неделю. Для меня это было главной целью. Дух Лес — нашла свой продукт.»</p>
+              <span class="reviews__product">Сома Красная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">БА</div>
+                <div>
+                  <div class="reviews__author">Батыр А.</div>
+                  <div class="reviews__date">28 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Өте құнды өнім. Ұйқы төнеді түскі сағы болса, енді нормальды уйықтап жатырмын. Балалы адамдарға ынамдар ғана сынап көршінші деп ойлаймын. Баға сыйлайма деп санамаймын.»</p>
+              <span class="reviews__product">Сома Красная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">НМ</div>
+                <div>
+                  <div class="reviews__author">Наталия М.</div>
+                  <div class="reviews__date">25 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Нашла в интернете случайно, первый раз такое вижу. Дорговата, но решила рискнуть. Месяц пью — голова яснее стала, раньше от забот не спешалось нормально. Теперь рекомендую всем знакомым.»</p>
+              <span class="reviews__product">Сома Пантерная 250мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">КЧ</div>
+                <div>
+                  <div class="reviews__author">Карина Ч.</div>
+                  <div class="reviews__date">19 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)" opacity="0.35"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Честно, жду большего. Пила две недели, какой-то эффект ощущаю, но не грандиозный. Может быть, нужно дольше? Упаковка классная, запах приятный. Может попробую ещё месяц и решу.»</p>
+              <span class="reviews__product">Сома Красная 250мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">РК</div>
+                <div>
+                  <div class="reviews__author">Рахим К.</div>
+                  <div class="reviews__date">14 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Сағаттарында таппай отырғам. Еңбек істеген адамдарға ұсынамын. Соттап соcomarca аза, тіңде ынампын бәрінің. Интернетте бәлгіліңіз құрметтеп сізді ағындатындым.»</p>
+              <span class="reviews__product">Сома Пантерная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">ДГ</div>
+                <div>
+                  <div class="reviews__author">Дарья Г.</div>
+                  <div class="reviews__date">10 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Подруга пила, я попросила её упаковку посмотреть. Купила себе, теперь уже полтора месяца. Очень нравится, что это натуральное, а не какая-нибудь химия. Упаковка красивая, можно подарить даже.»</p>
+              <span class="reviews__product">Сома Красная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">МА</div>
+                <div>
+                  <div class="reviews__author">Максим А.</div>
+                  <div class="reviews__date">6 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«После лыжных выходных спина болела ужасно. Жена купила Сому, пил три дня. Спина перестала беспокоить. Может совпадение, но доволен. Буду ещё покупать.»</p>
+              <span class="reviews__product">Сома Пантерная 500мл</span>
+            </div>
+
+            <div class="reviews__card">
+              <div class="reviews__card-header">
+                <div class="reviews__avatar">АИ</div>
+                <div>
+                  <div class="reviews__author">Айгуль И.</div>
+                  <div class="reviews__date">2 июня 2026</div>
+                </div>
+                <div class="reviews__stars">
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                  <svg viewBox="0 0 14 14" fill="url(#starGrad)"><path d="M7 1l1.6 3.2L12 4.7l-2.6 2.5.6 3.6L7 9.2l-3 1.6.6-3.6L2 4.7l3.4-.5z"/></svg>
+                </div>
+              </div>
+              <p class="reviews__text">«Балалы, түнде күте алмайды деген істі оңай жай. Төрт апта пайдаланып жатырмын, фереңлі, тек қана өнең істі беттейді іс. Баршаға ынамдар ғана тамаша.»</p>
+              <span class="reviews__product">Сома Красная 500мл</span>
+            </div>
+
+        </div><!-- /track--clone -->
+        </div><!-- /marquee-inner -->
+      </div><!-- /marquee -->
+    </div><!-- /container -->
+  </section>
+
+  <div class="section-divider">
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BLOCK 3 — CATALOG
+  ══════════════════════════════════════ -->
+  <section class="catalog" id="catalog">
+    <div class="catalog__bg"></div>
+    <div class="block-fade-top"></div>
+    <div class="block-fade-bottom"></div>
+
+    <div class="catalog__glow catalog__glow--left"></div>
+    <div class="catalog__glow catalog__glow--right"></div>
+
+    <div class="catalog__container">
+
+      <div class="catalog__header reveal-up" data-delay="0">
+        <span class="catalog__badge">КАТАЛОГ</span>
+        <h2 class="catalog__title">Коллекция<br><em>натуральных масел</em></h2>
+        <p class="catalog__subtitle">22 наименования · объёмы 100, 250 и 500 мл</p>
+      </div>
+
+      <!-- Фильтр по группам — строится в JS на основе данных каталога
+           (main.js, модуль Catalog CMS). "Все" показывает все 22 масла. -->
+      <div class="catalog__filters" id="catalog-filters" role="tablist" aria-label="Фильтр по категории"></div>
+
+      <!-- Единая сетка — рендерится из api/catalog.php -->
+      <div class="catalog__grid" id="catalog-grid" aria-live="polite"></div>
+
+      <!-- Состояние загрузки / пустоты -->
+      <p class="catalog__state" id="catalog-state">Загрузка каталога…</p>
+    </div><!-- /catalog__container -->
+  </section>
+
+  <div class="section-divider">
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BLOCK 5 — ОФОРМЛЕНИЕ ЗАКАЗА (CHECKOUT)
+  ══════════════════════════════════════ -->
+  <section class="checkout" id="checkout">
+    <div class="checkout__bg"></div>
+    <div class="block-fade-top"></div>
+    <div class="block-fade-bottom"></div>
+    <div class="checkout__container">
+      <div class="checkout__header reveal-up" data-delay="0">
+        <span class="checkout__badge">ОФОРМЛЕНИЕ</span>
+        <h2 class="checkout__title">Оформить <em>Заказ</em></h2>
+        <p class="checkout__subtitle">Добавьте товары в корзину, заполните данные и оформите заказ через WhatsApp.</p>
+      </div>
+
+      <div class="checkout__content reveal-up" data-delay="100">
+        <!-- Левая колонка: Корзина -->
+        <div class="checkout__cart-column">
+          <div class="checkout__cart-box">
+            <h3 class="checkout__section-title">Ваша корзина</h3>
+            <div class="checkout__items" id="cart-items">
+              <div class="checkout__empty-state">
+                <p>Корзина пуста</p>
+                <small>Добавьте товары из каталога выше</small>
+              </div>
+            </div>
+            <div class="checkout__cart-footer">
+              <div class="checkout__total">
+                <span>Итого:</span>
+                <span class="checkout__total-price" id="total-price">0 ₸</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Правая колонка: Форма данных -->
+        <div class="checkout__form-column">
+          <div class="checkout__form-box">
+            <h3 class="checkout__section-title">Данные для доставки</h3>
+
+            <div class="checkout__field">
+              <label class="checkout__label">Ваше имя</label>
+              <input
+                type="text"
+                class="checkout__input"
+                id="customer-name"
+                placeholder="Введите имя"
+              />
+            </div>
+
+            <div class="checkout__field">
+              <label class="checkout__label">Город</label>
+              <div class="checkout__dropdown" data-dropdown id="customer-city">
+                <button type="button" class="checkout__dropdown-btn">
+                  <span class="checkout__dropdown-value">Выберите город</span>
+                  <svg class="checkout__dropdown-arrow" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="checkout__dropdown-list">
+                  <div class="checkout__dropdown-option" data-value="Алматы">Алматы</div>
+                  <div class="checkout__dropdown-option" data-value="Астана">Астана</div>
+                  <div class="checkout__dropdown-option" data-value="Шымкент">Шымкент</div>
+                  <div class="checkout__dropdown-option" data-value="Караганда">Караганда</div>
+                  <div class="checkout__dropdown-option" data-value="Актобе">Актобе</div>
+                  <div class="checkout__dropdown-option" data-value="Тараз">Тараз</div>
+                  <div class="checkout__dropdown-option" data-value="Павлодар">Павлодар</div>
+                  <div class="checkout__dropdown-option" data-value="Усть-Каменогорск">Усть-Каменогорск</div>
+                  <div class="checkout__dropdown-option" data-value="Семей">Семей</div>
+                  <div class="checkout__dropdown-option" data-value="Атырау">Атырау</div>
+                  <div class="checkout__dropdown-option" data-value="Костанай">Костанай</div>
+                  <div class="checkout__dropdown-option" data-value="Кызылорда">Кызылорда</div>
+                  <div class="checkout__dropdown-option" data-value="Уральск">Уральск</div>
+                  <div class="checkout__dropdown-option" data-value="Петропавловск">Петропавловск</div>
+                  <div class="checkout__dropdown-option" data-value="Актау">Актау</div>
+                  <div class="checkout__dropdown-option" data-value="Темиртау">Темиртау</div>
+                  <div class="checkout__dropdown-option" data-value="Туркестан">Туркестан</div>
+                  <div class="checkout__dropdown-option" data-value="Кокшетау">Кокшетау</div>
+                  <div class="checkout__dropdown-option" data-value="Талдыкорган">Талдыкорган</div>
+                  <div class="checkout__dropdown-option" data-value="Экибастуз">Экибастуз</div>
+                  <div class="checkout__dropdown-option" data-value="Другой город">Другой город</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="checkout__field">
+              <label class="checkout__label">Способ оплаты</label>
+              <div class="checkout__dropdown" data-dropdown id="payment-method">
+                <button type="button" class="checkout__dropdown-btn">
+                  <span class="checkout__dropdown-value">Выберите способ</span>
+                  <svg class="checkout__dropdown-arrow" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="checkout__dropdown-list">
+                  <div class="checkout__dropdown-option" data-value="Kaspi банк">Kaspi банк</div>
+                  <div class="checkout__dropdown-option" data-value="Halyk банк">Halyk банк</div>
+                  <div class="checkout__dropdown-option" data-value="Freedom банк">Freedom банк</div>
+                  <div class="checkout__dropdown-option" data-value="Другой банк">Другой банк</div>
+                </div>
+              </div>
+            </div>
+
+            <button class="checkout__whatsapp-btn" id="whatsapp-btn">
+              <svg class="checkout__whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.47-.148-.67.15-.23.297-.921.927-1.125 1.124-.194.206-.389.22-.687.02-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.255.949c-1.238.503-2.37 1.236-3.356 2.241C3.06 10.378 2.275 11.645 1.8 13.032c-.475 1.387-.704 2.842-.704 4.298 0 1.456.229 2.911.704 4.298.475 1.387 1.26 2.654 2.256 3.656.986 1.005 2.118 1.738 3.356 2.241 1.238.503 2.554.749 3.883.749 1.33 0 2.646-.246 3.883-.749 1.238-.503 2.37-1.236 3.356-2.241.996-1.001 1.781-2.268 2.256-3.656.475-1.387.704-2.842.704-4.298 0-1.456-.229-2.911-.704-4.298-.475-1.387-1.26-2.654-2.256-3.656-.986-1.005-2.118-1.738-3.356-2.241-1.238-.503-2.554-.749-3.883-.749z"/>
+              </svg>
+              Заказать в WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BLOCK 11 — FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="footer" id="contacts">
+    <div class="footer__bg"></div>
+    <div class="block-fade-top"></div>
+    <div class="footer__top">
+      <div class="footer__container">
+
+        <div class="footer__col footer__col--brand">
+          <a href="#" class="footer__logo">
+            <span class="footer__logo-text">ELVORA</span>
+          </a>
+          <p class="footer__tagline">Натуральные масла.<br>22 наименования · 100, 250 и 500 мл.</p>
+          <div class="footer__socials">
+            <a href="https://wa.me/77712815115" class="footer__social" aria-label="WhatsApp" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.22-1.57A11.96 11.96 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zm-8.52 18.43a9.9 9.9 0 0 1-5.05-1.38l-.36-.21-3.69.93.99-3.59-.24-.37A9.9 9.9 0 0 1 2.1 12C2.1 6.53 6.53 2.1 12 2.1c2.64 0 5.12 1.03 6.99 2.9A9.85 9.85 0 0 1 21.9 12c0 5.47-4.43 9.91-9.9 9.91zm5.43-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07a8.18 8.18 0 0 1-2.41-1.49 9.06 9.06 0 0 1-1.67-2.07c-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.91-2.2-.24-.57-.48-.49-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.22 1.37.19 1.88.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/></svg>
+            </a>
+            <a href="https://t.me/mirotvorec12" class="footer__social" aria-label="Telegram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.18l-2.02 9.52c-.15.67-.54.83-1.09.52l-3-2.21-1.45 1.39c-.16.16-.3.3-.61.3l.21-3.03 5.5-4.97c.24-.21-.05-.33-.37-.12L6.44 14.3l-2.96-.92c-.64-.2-.65-.64.14-.95l11.56-4.46c.54-.19 1.01.13.76.21z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/reel/1694674738243918/" class="footer__social" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.27h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/pasko.mikhail1206?igsh=MTAwY3ZqcW9mOGk1dA==" class="footer__social" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12c0-3.2.01-3.58.07-4.85C2.38 3.86 3.9 2.31 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12c0 3.26.01 3.67.07 4.95.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24c3.26 0 3.67-.01 4.95-.07 4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95C23.73 2.71 21.31.27 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32A6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+            </a>
+            <a href="https://youtube.com/@paskomikhail?si=u4jXpyT2UPWQM1IV" class="footer__social" aria-label="YouTube" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.6 12 3.6 12 3.6s-7.54 0-9.38.45A3.02 3.02 0 0 0 .5 6.19C.06 8.05 0 12 0 12s.06 3.95.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.46 20.4 12 20.4 12 20.4s7.54 0 9.38-.45a3.02 3.02 0 0 0 2.12-2.14C23.94 15.95 24 12 24 12s-.06-3.95-.5-5.81zM9.75 15.52V8.48L15.85 12l-6.1 3.52z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@paskomikhail1?_r=1" class="footer__social" aria-label="TikTok" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82a4.28 4.28 0 0 1-1.05-2.82h-3.11v12.53a2.59 2.59 0 0 1-2.59 2.51 2.59 2.59 0 0 1-2.59-2.59 2.59 2.59 0 0 1 3.4-2.46V9.6a5.7 5.7 0 0 0-.81-.06 5.7 5.7 0 0 0-5.7 5.7 5.7 5.7 0 0 0 5.7 5.7 5.7 5.7 0 0 0 5.7-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.28a4.28 4.28 0 0 1-3.35-1.46z"/></svg>
+            </a>
+          </div>
+          <p class="footer__tagline" style="margin-top: 20px; margin-bottom: 0;">Петропавловск,<br>Проезд Московский 86</p>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Навигация</h4>
+          <ul class="footer__links">
+            <li><a href="#" class="footer__link">Главная</a></li>
+            <li><a href="#catalog" class="footer__link">Каталог</a></li>
+            <li><a href="#about" class="footer__link">О бренде</a></li>
+            <li><a href="#usage" class="footer__link">Применение</a></li>
+            <li><a href="#reviews" class="footer__link">Отзывы</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Продукция</h4>
+          <ul class="footer__links">
+            <li><a href="#catalog" class="footer__link">Каталог</a></li>
+            <li><a href="#benefits" class="footer__link">Преимущества</a></li>
+            <li><a href="#videos" class="footer__link">Видеоматериалы</a></li>
+            <li><a href="#checkout" class="footer__link">Доставка и оплата</a></li>
+          </ul>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="footer__container">
+        <p class="footer__copy">© 2026 ELVORA. Все права защищены.</p>
+        <div class="footer__bottom-row">
+          <div class="footer__legal-links">
+            <a href="#" class="footer__legal-link">Политика конфиденциальности</a>
+            <a href="#" class="footer__legal-link">Условия использования</a>
+            <a href="#" class="footer__legal-link">Отказ от ответственности</a>
+          </div>
+          <p class="footer__disclaimer">Продукт не является лекарственным средством. Перед применением проконсультируйтесь с врачом. 18+</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════
+       Модальное окно проигрывателя видео
+  ══════════════════════════════════════ -->
+  <div class="vmodal" id="vmodal" aria-hidden="true">
+    <div class="vmodal__backdrop" data-vclose></div>
+    <div class="vmodal__dialog" role="dialog" aria-modal="true" aria-label="Видео">
+      <button class="vmodal__close" data-vclose aria-label="Закрыть">&times;</button>
+      <div class="vmodal__frame" id="vmodal-frame"></div>
+      <div class="vmodal__meta" id="vmodal-meta"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       Тост «Добавлено в корзину» (вылетает слева → центр → вправо)
+  ══════════════════════════════════════ -->
+  <div class="cart-toast" id="cart-toast" aria-hidden="true">
+    <span class="cart-toast__icon">
+      <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><circle cx="9" cy="21" r="1.4" fill="currentColor"/><circle cx="19" cy="21" r="1.4" fill="currentColor"/><path d="M1.5 2h3l2.4 12.3a2 2 0 0 0 2 1.62h9.2a2 2 0 0 0 1.97-1.63L22 6.5H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    <span class="cart-toast__text">Добавлено в корзину</span>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       Плавающая кнопка (FAB): «?» → WhatsApp + Корзина
+  ══════════════════════════════════════ -->
+  <div class="fab" id="fab">
+    <div class="fab__action">
+      <span class="fab__label">Написать нам</span>
+      <button class="fab__btn fab__btn--wa" id="fab-wa" type="button" aria-label="Написать в WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.15h-.01a8.2 8.2 0 01-4.18-1.14l-.3-.18-3.11.82.83-3.04-.2-.31a8.24 8.24 0 01-1.26-4.35c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.48-1.38-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14 0-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+      </button>
+    </div>
+    <div class="fab__action">
+      <span class="fab__label" id="fab-cart-label">Корзина пуста</span>
+      <button class="fab__btn fab__btn--cart" id="fab-cart" type="button" aria-label="Открыть корзину">
+        <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="9" cy="21" r="1.4" fill="currentColor"/><circle cx="19" cy="21" r="1.4" fill="currentColor"/><path d="M1.5 2h3l2.4 12.3a2 2 0 0 0 2 1.62h9.2a2 2 0 0 0 1.97-1.63L22 6.5H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="fab__badge" id="fab-badge" hidden>0</span>
+      </button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="main.js?v=21"></script>
+</body>
+</html>
+
