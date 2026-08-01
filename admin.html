@@ -4,15 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Панель управления · Дух Лес</title>
-  <link rel="stylesheet" href="admin.css?v=3" />
+  <title>Панель управления · ELVORA</title>
+  <link rel="stylesheet" href="admin.css?v=4" />
 </head>
 <body>
 
   <!-- ЭКРАН ВХОДА -->
   <section class="login" id="login-screen">
     <form class="login__card" id="login-form" autocomplete="off">
-      <div class="login__logo">ДУХ ЛЕС</div>
+      <div class="login__logo">ELVORA</div>
       <h1 class="login__title">Панель управления</h1>
       <p class="login__sub">Введите пароль для доступа</p>
       <input class="login__input" type="password" id="login-pass"
@@ -26,7 +26,7 @@
   <!-- ДАШБОРД -->
   <main class="dash" id="dash" hidden style="display:none">
     <header class="dash__top">
-      <div class="dash__brand">Дух&nbsp;Лес · Видеоматериалы</div>
+      <div class="dash__brand">ELVORA · Панель управления</div>
       <div class="dash__actions">
         <a class="btn btn--ghost" href="index.html">На сайт</a>
         <button class="btn btn--ghost" id="logout-btn" type="button">Выйти</button>
@@ -122,8 +122,20 @@
         <div class="clist" id="catalog-list"></div>
       </section>
     </div>
+
+    <!-- СОЦСЕТИ В ПОДВАЛЕ: адрес ссылки и показ иконки -->
+    <div class="dash__body dash__body--wide">
+      <section class="panel panel--wide">
+        <h2 class="panel__title">Соцсети в подвале (<span id="soc-count">0</span>)</h2>
+        <p class="panel__hint">
+          Вставьте адрес ссылки для каждой иконки. «Показывать» — выключите, чтобы иконка
+          пропала из подвала сайта. Ссылка должна начинаться с http:// или https://.
+        </p>
+        <div class="slist" id="socials-list"></div>
+      </section>
+    </div>
   </main>
 
-  <script src="admin.js?v=3"></script>
+  <script src="admin.js?v=4"></script>
 </body>
 </html>

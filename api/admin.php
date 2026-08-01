@@ -205,6 +205,46 @@ switch ($action) {
         json_out(['ok' => true, 'products' => $products]);
         break;
 
+    case 'socials_list':
+        require_admin();
+        json_out(['ok' => true, 'socials' => load_socials($cfg)]);
+        break;
+
+    case 'socials_save':
+        require_admin();
+        check_csrf();
+        $id = (string) $in('id', '');
+        if ($id === '') {
+            json_out(['ok' => false, 'error' => 'bad_input'], 400);
+        }
+        $patchRaw = $in('patch', []);
+        if (is_string($patchRaw)) {
+            $patchRaw = json_decode($patchRaw, true);
+        }
+        if (!is_array($patchRaw)) {
+            json_out(['ok' => false, 'error' => 'bad_input'], 400);
+        }
+        $patch = sanitize_social_patch($patchRaw);
+
+        $socials = load_socials($cfg);
+        $found = false;
+        foreach ($socials as &$s) {
+            if (($s['id'] ?? '') === $id) {
+                $s = array_merge($s, $patch);
+                $found = true;
+                break;
+            }
+        }
+        unset($s);
+        if (!$found) {
+            json_out(['ok' => false, 'error' => 'not_found'], 404);
+        }
+        if (!save_socials($cfg, $socials)) {
+            json_out(['ok' => false, 'error' => 'save_failed'], 500);
+        }
+        json_out(['ok' => true, 'socials' => $socials]);
+        break;
+
     case 'upload':
         require_admin();
         check_csrf();

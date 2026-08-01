@@ -1,15 +1,18 @@
 /* ══════════════════════════════════════════
-   Админ-панель «Дух Лес» — самостоятельные стили
+   Админ-панель ELVORA — самостоятельные стили
+   Палитра совпадает с витриной: чёрная база и золото
+   (#D4B36A / #F3E3B8 / #B08B3E), без прежних оранжевых акцентов.
 ══════════════════════════════════════════ */
 :root {
-  --bg:        #0b0705;
-  --panel:     rgba(24, 15, 8, 0.72);
-  --panel-brd: rgba(255, 140, 20, 0.22);
-  --accent:    #ff8c14;
-  --accent-2:  #ff5a14;
-  --txt:       #f3ece6;
-  --txt-dim:   rgba(243, 236, 230, 0.55);
-  --danger:    #ff4d4d;
+  --bg:        #070707;
+  --panel:     rgba(18, 16, 13, 0.72);
+  --panel-brd: rgba(212, 179, 106, 0.22);
+  --accent:    #D4B36A;
+  --accent-2:  #B08B3E;
+  --accent-lt: #F3E3B8;
+  --txt:       #f2ede4;
+  --txt-dim:   rgba(242, 237, 228, 0.55);
+  --danger:    #e2574f;
 }
 
 * { box-sizing: border-box; }
@@ -22,7 +25,7 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255, 90, 20, 0.10), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(212, 179, 106, 0.10), transparent 60%),
     var(--bg);
   color: var(--txt);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -38,7 +41,7 @@ body {
   padding: 11px 20px;
   border-radius: 10px;
   border: 1px solid var(--panel-brd);
-  background: rgba(255, 90, 20, 0.08);
+  background: rgba(212, 179, 106, 0.08);
   color: var(--txt);
   font-size: 14px;
   font-weight: 600;
@@ -46,7 +49,7 @@ body {
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s, transform 0.12s, opacity 0.2s;
 }
-.btn:hover { border-color: rgba(255, 140, 20, 0.55); background: rgba(255, 140, 20, 0.16); }
+.btn:hover { border-color: rgba(212, 179, 106, 0.55); background: rgba(212, 179, 106, 0.16); }
 .btn:active { transform: translateY(1px); }
 .btn:disabled { opacity: 0.5; cursor: default; }
 .btn--primary {
@@ -194,14 +197,14 @@ body {
   align-items: center;
   padding: 8px 14px;
   border-radius: 8px;
-  border: 1px dashed rgba(255, 140, 20, 0.4);
+  border: 1px dashed rgba(212, 179, 106, 0.4);
   color: var(--accent);
   font-size: 12.5px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
 }
-.upload:hover { background: rgba(255, 140, 20, 0.1); }
+.upload:hover { background: rgba(212, 179, 106, 0.1); }
 .upload__status { font-size: 12px; color: var(--txt-dim); }
 .upload__status.is-err { color: var(--danger); }
 .upload__status.is-ok { color: #57d38c; }
@@ -236,7 +239,7 @@ body {
 .vitem__thumb-ph {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  color: rgba(255,140,20,0.5); font-size: 18px;
+  color: rgba(212,179,106,0.5); font-size: 18px;
 }
 .vitem__main { min-width: 0; }
 .vitem__title {
@@ -248,7 +251,7 @@ body {
   display: inline-block;
   font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--accent);
-  border: 1px solid rgba(255,140,20,0.3);
+  border: 1px solid rgba(212,179,106,0.3);
   border-radius: 5px; padding: 1px 6px; margin-right: 6px;
 }
 .vitem__actions { display: flex; gap: 6px; align-items: center; }
@@ -263,7 +266,7 @@ body {
   cursor: pointer;
   transition: background 0.18s, border-color 0.18s, opacity 0.18s;
 }
-.iconbtn:hover { background: rgba(255,140,20,0.14); border-color: rgba(255,140,20,0.5); }
+.iconbtn:hover { background: rgba(212,179,106,0.14); border-color: rgba(212,179,106,0.5); }
 .iconbtn:disabled { opacity: 0.3; cursor: default; }
 .iconbtn--danger:hover { background: rgba(255,77,77,0.16); border-color: rgba(255,77,77,0.6); color: var(--danger); }
 
@@ -363,7 +366,38 @@ body {
 .citem__status.is-ok { color: #57d38c; }
 .citem__status.is-err { color: var(--danger); }
 
+/* ── Соцсети в подвале ── */
+.slist { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+.sitem {
+  display: grid;
+  grid-template-columns: minmax(150px, 220px) 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--panel-brd);
+  background: rgba(0,0,0,0.25);
+  transition: opacity 0.2s, border-color 0.2s;
+}
+/* Скрытая иконка гасится и подсвечивается рамкой — так в списке сразу
+   видно, что именно не показывается на сайте. */
+.sitem--hidden { opacity: 0.55; border-color: rgba(226, 87, 79, 0.4); }
+.sitem__url { display: block; }
+.sitem__url input {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--panel-brd);
+  background: rgba(0,0,0,0.35);
+  color: var(--txt);
+  font-size: 13px;
+  font-family: inherit;
+}
+.sitem__url input:focus { outline: none; border-color: var(--accent); }
+.sitem__toggles { display: flex; align-items: center; }
+
 @media (max-width: 860px) {
   .citem { grid-template-columns: 1fr; }
   .citem__prices { flex-wrap: wrap; }
+  .sitem { grid-template-columns: 1fr; }
 }

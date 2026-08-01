@@ -1,6 +1,6 @@
 <?php
 /**
- * Конфигурация админ-панели «Дух Лес».
+ * Конфигурация админ-панели ELVORA.
  *
  * ВАЖНО про безопасность:
  * - Пароль хранится ТОЛЬКО в виде bcrypt-хэша. Исходный пароль нигде
@@ -21,6 +21,7 @@ return [
     // Пути к данным и загрузкам (файловая система, не URL).
     'data_file'         => __DIR__ . '/../data/videos.json',
     'catalog_data_file' => __DIR__ . '/../data/catalog.json',
+    'socials_data_file' => __DIR__ . '/../data/socials.json',
     'upload_dir' => __DIR__ . '/../uploads',
     'upload_url' => 'uploads',
 

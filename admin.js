@@ -85,6 +85,7 @@
     dash.style.display = '';
     loadList();
     loadCatalog();
+    loadSocials();
   }
 
   /* ── старт: проверяем сессию ── */
@@ -516,6 +517,121 @@
         const idx = catalogProducts.findIndex(x => x.id === id);
         if (idx > -1) catalogProducts[idx] = Object.assign({}, catalogProducts[idx], patch);
         if (statusEl) {
+          statusEl.textContent = 'Сохранено ✓';
+          statusEl.className = 'citem__status is-ok';
+          setTimeout(() => { statusEl.textContent = ''; statusEl.className = 'citem__status'; }, 2000);
+        }
+      } else if (res && res.error === 'unauthorized') {
+        showLogin();
+      } else if (statusEl) {
+        statusEl.textContent = 'Ошибка сохранения';
+        statusEl.className = 'citem__status is-err';
+      }
+    } catch (e) {
+      if (statusEl) {
+        statusEl.textContent = 'Ошибка соединения';
+        statusEl.className = 'citem__status is-err';
+      }
+    }
+  }
+
+  /* ══════════════════════════════════════════
+     Соцсети в подвале — адрес ссылки и показ иконки.
+     Набор иконок фиксирован разметкой сайта; отсюда правятся только
+     URL и видимость. Автосохранение с тем же debounce, что и каталог.
+  ══════════════════════════════════════════ */
+  const socListEl  = document.getElementById('socials-list');
+  const socCountEl = document.getElementById('soc-count');
+  let socials = [];
+  const socTimers = {};
+
+  async function loadSocials() {
+    if (!socListEl) return;
+    try {
+      const res = await apiJSON('socials_list');
+      if (res && res.ok) {
+        socials = res.socials || [];
+        renderSocials();
+      } else if (res && res.error === 'unauthorized') {
+        showLogin();
+      }
+    } catch (e) {
+      socListEl.innerHTML = '<p class="vlist__empty">Не удалось загрузить соцсети.</p>';
+    }
+  }
+
+  function renderSocials() {
+    if (!socListEl) return;
+    if (socCountEl) socCountEl.textContent = String(socials.length);
+    socListEl.innerHTML = '';
+    if (!socials.length) {
+      socListEl.innerHTML = '<p class="vlist__empty">Список соцсетей пуст.</p>';
+      return;
+    }
+    socials.forEach(s => socListEl.appendChild(buildSocialItem(s)));
+  }
+
+  function buildSocialItem(s) {
+    const item = document.createElement('div');
+    item.className = 'sitem';
+    if (s.visible === false) item.classList.add('sitem--hidden');
+
+    const status = document.createElement('div');
+    status.className = 'citem__status';
+
+    const head = document.createElement('div');
+    const name = document.createElement('div');
+    name.className = 'citem__name';
+    name.textContent = s.label || s.id;
+    const idSpan = document.createElement('span');
+    idSpan.className = 'citem__id';
+    idSpan.textContent = s.id;
+    name.appendChild(idSpan);
+    head.append(name, status);
+
+    const urlWrap = document.createElement('label');
+    urlWrap.className = 'sitem__url';
+    const urlInput = document.createElement('input');
+    urlInput.type = 'url';
+    urlInput.placeholder = 'https://…';
+    urlInput.value = s.url || '';
+    urlInput.addEventListener('change', () => {
+      queueSocialSave(s.id, { url: urlInput.value.trim() }, status);
+    });
+    urlWrap.appendChild(urlInput);
+
+    const toggles = document.createElement('div');
+    toggles.className = 'sitem__toggles';
+    toggles.appendChild(mkToggle('Показывать', s.visible !== false, val => {
+      item.classList.toggle('sitem--hidden', !val);
+      queueSocialSave(s.id, { visible: val }, status);
+    }));
+
+    item.append(head, urlWrap, toggles);
+    return item;
+  }
+
+  function queueSocialSave(id, patch, statusEl) {
+    clearTimeout(socTimers[id]);
+    if (statusEl) { statusEl.textContent = ''; statusEl.className = 'citem__status'; }
+    socTimers[id] = setTimeout(() => saveSocialItem(id, patch, statusEl), 400);
+  }
+
+  async function saveSocialItem(id, patch, statusEl) {
+    try {
+      const res = await apiJSON('socials_save', { id, patch });
+      if (res && res.ok) {
+        const idx = socials.findIndex(x => x.id === id);
+        if (idx > -1) socials[idx] = Object.assign({}, socials[idx], patch);
+        if (statusEl) {
+          // Сервер отбрасывает ссылки не на http(s) — сообщаем об этом явно,
+          // иначе поле молча очистится и это выглядит как потеря данных.
+          const saved = (res.socials || []).find(x => x.id === id);
+          if (patch.url && saved && !saved.url) {
+            statusEl.textContent = 'Нужна ссылка http:// или https://';
+            statusEl.className = 'citem__status is-err';
+            return;
+          }
           statusEl.textContent = 'Сохранено ✓';
           statusEl.className = 'citem__status is-ok';
           setTimeout(() => { statusEl.textContent = ''; statusEl.className = 'citem__status'; }, 2000);

@@ -208,6 +208,72 @@ function sanitize_catalog_patch(array $v): array
     return $patch;
 }
 
+/* ─────────────────────────────────────────────
+   Ссылки на соцсети в подвале сайта.
+   Набор иконок фиксирован кодом (id → SVG в разметке), из админки
+   правятся только адрес ссылки и показ/скрытие конкретной иконки.
+───────────────────────────────────────────── */
+
+/** Читает список соцсетей из JSON-файла. */
+function load_socials(array $cfg): array
+{
+    $f = $cfg['socials_data_file'] ?? '';
+    if ($f === '' || !is_file($f)) {
+        return [];
+    }
+    $data = json_decode((string) file_get_contents($f), true);
+    if (!is_array($data) || empty($data['socials']) || !is_array($data['socials'])) {
+        return [];
+    }
+    return array_values($data['socials']);
+}
+
+/** Атомарно записывает список соцсетей в JSON-файл. */
+function save_socials(array $cfg, array $socials): bool
+{
+    $f = $cfg['socials_data_file'] ?? '';
+    if ($f === '') {
+        return false;
+    }
+    $dir = dirname($f);
+    if (!is_dir($dir)) {
+        @mkdir($dir, 0775, true);
+    }
+    $json = json_encode(
+        ['socials' => array_values($socials)],
+        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT
+    );
+    $tmp = $f . '.' . bin2hex(random_bytes(4)) . '.tmp';
+    if (file_put_contents($tmp, $json, LOCK_EX) === false) {
+        return false;
+    }
+    return rename($tmp, $f);
+}
+
+/**
+ * Приводит правки соцсети к безопасному виду.
+ * Разрешены только http(s)-ссылки: схемы вроде javascript: в href подвала
+ * превратились бы в исполняемый код на странице у каждого посетителя.
+ */
+function sanitize_social_patch(array $v): array
+{
+    $patch = [];
+    if (array_key_exists('url', $v)) {
+        $url = trim((string) $v['url']);
+        if ($url !== '') {
+            $scheme = strtolower((string) parse_url($url, PHP_URL_SCHEME));
+            if ($scheme !== 'http' && $scheme !== 'https') {
+                $url = '';
+            }
+        }
+        $patch['url'] = mb_substr($url, 0, 500);
+    }
+    if (array_key_exists('visible', $v)) {
+        $patch['visible'] = (bool) $v['visible'];
+    }
+    return $patch;
+}
+
 /** Приводит данные одного видео к безопасному виду. */
 function sanitize_video(array $v): array
 {

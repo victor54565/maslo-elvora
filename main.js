@@ -132,11 +132,21 @@
   const filtersEl = document.getElementById('catalog-filters');
   const gridEl    = document.getElementById('catalog-grid');
   const stateEl   = document.getElementById('catalog-state');
+  const pagerEl   = document.getElementById('catalog-pagination');
   if (!gridEl) return;
 
   const scaleMap = { '100': 'scale-sm', '250': 'scale-md', '500': '' };
   let products = [];
   let activeGroup = 'all';
+
+  /* Пагинация только на телефоне: на узком экране карточки идут в один
+     столбец, и 22 позиции подряд превращаются в бесконечную ленту. На
+     десктопе сетка 4-в-ряд, там всё помещается и делить не нужно. */
+  const PER_PAGE = 4;
+  const mqMobile = window.matchMedia('(max-width: 768px)');
+  let page = 1;
+
+  const isPaged = () => mqMobile.matches;
 
   function fmtPrice(n) {
     return n.toLocaleString('ru-RU');
@@ -303,6 +313,7 @@
       b.setAttribute('aria-selected', key === activeGroup ? 'true' : 'false');
       b.addEventListener('click', () => {
         activeGroup = key;
+        page = 1;           // новая категория — всегда с первой страницы
         render();
       });
       return b;
@@ -327,13 +338,25 @@
 
     if (!list.length) {
       if (stateEl) { stateEl.hidden = false; stateEl.textContent = 'В этой категории пока нет товаров.'; }
+      renderPager(0);
       return;
     }
     if (stateEl) stateEl.hidden = true;
 
+    // На телефоне режем на страницы по PER_PAGE, на десктопе отдаём всё.
+    const pages = isPaged() ? Math.ceil(list.length / PER_PAGE) : 1;
+    if (page > pages) page = pages;
+    if (page < 1) page = 1;
+
+    const slice = isPaged()
+      ? list.slice((page - 1) * PER_PAGE, page * PER_PAGE)
+      : list;
+
     const frag = document.createDocumentFragment();
-    list.forEach((p, i) => frag.appendChild(buildCard(p, i)));
+    slice.forEach((p, i) => frag.appendChild(buildCard(p, i)));
     gridEl.appendChild(frag);
+
+    renderPager(pages);
 
     // Новые карточки появляются со scroll-reveal — как и остальные блоки сайта.
     gridEl.querySelectorAll('.reveal-up').forEach(el => {
@@ -345,6 +368,55 @@
     } else {
       gridEl.querySelectorAll('.reveal-up').forEach(el => el.classList.add('is-visible'));
     }
+  }
+
+  /* --- панель пагинации (только мобильная) --- */
+  function renderPager(pages) {
+    if (!pagerEl) return;
+    pagerEl.innerHTML = '';
+    if (!isPaged() || pages <= 1) return;
+
+    const mkBtn = (label, target, opts = {}) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'catalog__page-btn' + (opts.active ? ' is-active' : '');
+      b.textContent = label;
+      if (opts.disabled) {
+        b.disabled = true;
+      } else {
+        b.addEventListener('click', () => goTo(target));
+      }
+      if (opts.aria) b.setAttribute('aria-label', opts.aria);
+      return b;
+    };
+
+    pagerEl.appendChild(mkBtn('‹', page - 1, { disabled: page === 1, aria: 'Предыдущая страница' }));
+    for (let p = 1; p <= pages; p++) {
+      pagerEl.appendChild(mkBtn(String(p), p, { active: p === page }));
+    }
+    pagerEl.appendChild(mkBtn('›', page + 1, { disabled: page === pages, aria: 'Следующая страница' }));
+  }
+
+  function goTo(p) {
+    page = p;
+    render();
+    // Возврат к началу списка, иначе после смены страницы пользователь
+    // остаётся внизу и видит только пагинацию.
+    const filters = document.getElementById('catalog-filters');
+    const anchor = filters || document.getElementById('catalog');
+    if (anchor) {
+      const y = anchor.getBoundingClientRect().top + window.pageYOffset - 90;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }
+
+  /* Переключение телефон ⇄ десктоп: при уходе с мобильной ширины страницы
+     больше не нужны — показываем весь список целиком и наоборот. */
+  const onBreakpointChange = () => { page = 1; render(); };
+  if (mqMobile.addEventListener) {
+    mqMobile.addEventListener('change', onBreakpointChange);
+  } else if (mqMobile.addListener) {
+    mqMobile.addListener(onBreakpointChange);   // Safari < 14
   }
 
   function load() {
@@ -377,9 +449,29 @@
 })();
 
 /* ─────────────────────────────────────────
-   3. (свободно) — здесь был аккордеон раздела
-   «Исторические писания»; раздел удалён.
+   3. Соцсети в подвале — адреса и видимость из админки.
+   Иконки (SVG) остаются в разметке; отсюда подставляется только href,
+   а скрытые администратором убираются из DOM. Если API недоступен
+   (статичный предпросмотр без PHP) — остаются ссылки из разметки.
 ───────────────────────────────────────── */
+(function initFooterSocials() {
+  const links = document.querySelectorAll('.footer__social[data-social]');
+  if (!links.length) return;
+
+  fetch('api/socials.php', { headers: { 'Accept': 'application/json' } })
+    .then(r => { if (!r.ok) throw new Error('api'); return r.json(); })
+    .then(data => {
+      if (!data || !data.ok || !Array.isArray(data.socials)) throw new Error('bad_data');
+      const byId = new Map(data.socials.map(s => [s.id, s]));
+      links.forEach(a => {
+        const cfg = byId.get(a.dataset.social);
+        // Отсутствует в ответе — значит скрыт или без адреса: убираем.
+        if (!cfg) { a.remove(); return; }
+        a.href = cfg.url;
+      });
+    })
+    .catch(() => { /* оставляем адреса, зашитые в разметке */ });
+})();
 
 /* ─────────────────────────────────────────
    4. Force hero animations to replay

@@ -698,7 +698,7 @@ ul { list-style: none; }
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -717,7 +717,7 @@ ul { list-style: none; }
 }
 .about__title em {
   font-style: italic;
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -904,30 +904,57 @@ ul { list-style: none; }
   .nav.is-menu-open .nav__burger span:nth-child(2) { opacity: 0; }
   .nav.is-menu-open .nav__burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* ── Мобильный hero ──
-     Раньше первый экран был отдан под фотографию (100vh картинки, текст
-     ниже отдельным блоком). Фоновых фото больше нет, поэтому на мобильном
-     это снова обычный текстовый первый экран: контент по центру на чёрном.
-     Структура блоков (.hero__bg / __overlay / __inner / .hero-glass)
-     сохранена — картинка сможет вернуться в .hero__bg без правок HTML. */
+  /* ── Мобильный hero: единый баннер, разрезанный прокруткой ──
+     Первый экран отдан фотографии целиком — ничем не закрыт, текста нет.
+     Пролистнув, пользователь видит продолжение того же кадра, а поверх
+     него — эйброу/заголовок/подзаголовок/кнопки. Технически это один
+     .hero: фон растянут на всю его высоту (первый экран + текстовая
+     часть), а .hero__inner отодвинут вниз ровно на высоту экрана. */
   .hero {
-    display: flex;
-    /* На мобильном контент выше, чем экран, поэтому фиксированную высоту
-       снимаем: экран — это минимум, дальше блок растёт под содержимое. */
+    display: block;
     height: auto;
-    min-height: calc(100svh - var(--nav-h));
+    min-height: auto;
+    margin-top: var(--nav-h);
     background: #000;
   }
   .hero__bg {
+    /* height:auto + bottom:0 — фон покрывает и текстовую часть тоже,
+       иначе ниже первого экрана оставалась бы голая чернота. */
     inset: 0;
-    background: #000;
-    animation: none;
+    height: auto;
+    bottom: 0;
+    /* Отдельный вертикальный кадр: десктопный 1852×849 на экране шириной
+       375px обрезается почти полностью — в кадр попадала одна стена без
+       бутылок. Портретная версия покрывает и первый экран, и текстовую
+       часть под ним. */
+    background: #000 url('backgrounds/hero-bg-mobile.png') center top / cover no-repeat;
+    animation: bgZoom 16s ease-in-out infinite;
   }
+  /* Пятно под текстом с десктопа тут не нужно — на телефоне за читаемость
+     отвечает градиент .hero__overlay, растянутый на всю высоту. */
+  .hero__bg::after { display: none; }
+
   .hero__overlay {
-    inset: 12px;
-    border: 1px solid rgba(212,179,106,0.14);
-    background: none;
+    display: block;
+    inset: 0;
+    height: auto;
+    bottom: 0;
+    border: none;
+    z-index: 2;
+    pointer-events: none;
+    /* Прозрачно на первом экране (фото открыто), плотнее к низу — там,
+       где лежит текст, и на стыке с чёрным разделителем. */
+    background: linear-gradient(to bottom,
+      rgba(0,0,0,0.30) 0%,
+      rgba(0,0,0,0.10) 12%,
+      rgba(0,0,0,0.06) 30%,
+      rgba(0,0,0,0.22) 46%,
+      rgba(0,0,0,0.52) 58%,
+      rgba(0,0,0,0.74) 70%,
+      rgba(0,0,0,0.88) 84%,
+      rgba(0,0,0,0.96) 100%);
   }
+  .hero::before { display: none; }
   .hero__fade-bottom { display: none; }
 
   .hero__mark { display: none !important; }
@@ -935,12 +962,13 @@ ul { list-style: none; }
   .hero__inner {
     position: relative;
     z-index: 3;
-    flex: 1;
+    flex: none;
     max-width: none;
-    margin-top: 0;
-    padding: 130px 22px 36px;
-    display: flex;
-    align-items: center;
+    /* Ровно высота видимого экрана под шапкой — текст начинается сразу
+       за первым экраном, поэтому фото на нём остаётся чистым. */
+    margin-top: calc(100svh - var(--nav-h));
+    padding: 44px 22px 40px;
+    display: block;
   }
   .hero__content { max-width: none; }
   .hero__subtitle { max-width: none; }
@@ -1017,7 +1045,7 @@ ul { list-style: none; }
   box-shadow: inset 0 0 0 999px rgba(42,31,12,0.10);
   font-size: 11px; font-weight: 600;
   letter-spacing: 0.2em; text-transform: uppercase;
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1031,7 +1059,7 @@ ul { list-style: none; }
 }
 .catalog__title em {
   font-style: italic;
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1430,6 +1458,18 @@ ul { list-style: none; }
   --accent-red:    var(--gold);
   --accent-gold:   var(--gold);
   --grad-gold: linear-gradient(180deg, #F3E3B8 0%, #8C6B2F 100%);
+
+  /* Заливка золотом для заголовков и бейджей.
+     Прежний вариант уходил в #2A1F0C — почти чёрный коричневый, из-за чего
+     нижняя половина букв гасла и текст читался как грязно-бурый, а не как
+     золото. Здесь диапазон держится в золоте: светлый блик сверху,
+     насыщенная середина, тёплая глубокая база — контраст есть, грязи нет. */
+  --grad-gold-text: linear-gradient(180deg,
+    #FBEFCB 0%,
+    #EFD79E 26%,
+    #DCBB74 52%,
+    #C39B4C 78%,
+    #A87C2C 100%);
 }
 
 /* ═══════════════════════════════════════════
@@ -1576,7 +1616,7 @@ ul { list-style: none; }
   font-weight: 700;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1973,7 +2013,7 @@ ul { list-style: none; }
 }
 .reviews__avg {
   font-size: 28px; font-weight: 800;
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2192,7 +2232,7 @@ ul { list-style: none; }
   box-shadow: inset 0 0 0 999px rgba(42,31,12,0.10);
   font-size: 11px; font-weight: 600;
   letter-spacing: 0.2em; text-transform: uppercase;
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2207,7 +2247,7 @@ ul { list-style: none; }
 }
 .videos__title em {
   font-style: italic;
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2284,7 +2324,7 @@ ul { list-style: none; }
   transform: translate(-50%, -50%) scale(1);
   width: 52px; height: 52px;
   border-radius: 50%;
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   display: flex; align-items: center; justify-content: center;
   color: #fff;
   box-shadow: 0 0 0 6px rgba(140,107,47,0.15), 0 8px 24px rgba(140,107,47,0.45);
@@ -2322,7 +2362,7 @@ ul { list-style: none; }
 .videos__tag {
   font-size: 10px; font-weight: 700;
   letter-spacing: 0.16em; text-transform: uppercase;
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2667,7 +2707,7 @@ ul { list-style: none; }
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2683,7 +2723,7 @@ ul { list-style: none; }
   font-weight: 700;
   margin-bottom: 20px;
   line-height: 1.2;
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2710,9 +2750,9 @@ ul { list-style: none; }
 }
 .checkout__cart-box {
   flex: 1;
-  background: rgba(12,12,12, 0.32);
-  backdrop-filter: blur(12px) saturate(130%);
-  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  background: rgba(12,12,12, 0.16);
+  backdrop-filter: blur(10px) saturate(125%);
+  -webkit-backdrop-filter: blur(10px) saturate(125%);
   border: 1px solid rgba(212,179,106, 0.15);
   border-radius: 20px;
   padding: 32px;
@@ -2771,7 +2811,7 @@ ul { list-style: none; }
   text-align: center;
 }
 .checkout__item-price {
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2809,7 +2849,7 @@ ul { list-style: none; }
   font-weight: 600;
 }
 .checkout__total-price {
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2823,9 +2863,9 @@ ul { list-style: none; }
 }
 .checkout__form-box {
   flex: 1;
-  background: rgba(12,12,12, 0.32);
-  backdrop-filter: blur(12px) saturate(130%);
-  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  background: rgba(12,12,12, 0.16);
+  backdrop-filter: blur(10px) saturate(125%);
+  -webkit-backdrop-filter: blur(10px) saturate(125%);
   border: 1px solid rgba(212,179,106, 0.15);
   border-radius: 20px;
   padding: 32px;
@@ -2950,7 +2990,7 @@ ul { list-style: none; }
   color: #fff;
 }
 .checkout__dropdown-option.is-selected {
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   color: #fff;
   font-weight: 600;
 }
@@ -2966,7 +3006,7 @@ ul { list-style: none; }
 .checkout__whatsapp-btn {
   margin-top: auto;
   padding: 14px 24px;
-  background: linear-gradient(180deg, #D4B36A 0%, #2A1F0C 100%);
+  background: var(--grad-gold-text);
   border: none;
   border-radius: 10px;
   color: #fff;
@@ -3245,6 +3285,52 @@ ul { list-style: none; }
 }
 .videos__page-btn:disabled { opacity: 0.35; cursor: default; }
 
+/* ═══════════════════════════════════════════
+   ПАГИНАЦИЯ КАТАЛОГА — только телефон
+   На десктопе сетка 4-в-ряд вмещает все позиции, и панель не нужна;
+   JS в этом случае её и не наполняет, но прячем ещё и стилем, чтобы
+   пустой блок не давал лишнего отступа под сеткой.
+═══════════════════════════════════════════ */
+.catalog__pagination { display: none; }
+
+@media (max-width: 768px) {
+  .catalog__pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 32px;
+  }
+  .catalog__page-btn {
+    /* 8 кнопок (‹ + 6 страниц + ›) должны уложиться в одну строку на
+       экране 360–375px: 8×36 + 7×6 = 330px. При 40px и gap 8px стрелка
+       «вперёд» переносилась на второй ряд. */
+    min-width: 36px;
+    height: 38px;
+    padding: 0 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid rgba(212,179,106, 0.25);
+    background: rgba(16,16,16, 0.55);
+    color: rgba(255,255,255,0.72);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.22s, background 0.22s, color 0.22s, transform 0.15s;
+  }
+  .catalog__page-btn:active:not(:disabled) { transform: translateY(1px); }
+  .catalog__page-btn.is-active {
+    border-color: rgba(212,179,106, 0.75);
+    background: rgba(212,179,106, 0.20);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(212,179,106, 0.22);
+  }
+  .catalog__page-btn:disabled { opacity: 0.35; cursor: default; }
+}
+
 /* ── Модальный плеер ── */
 .vmodal {
   position: fixed;
@@ -3490,24 +3576,10 @@ ul { list-style: none; }
 }
 .fab__badge[hidden] { display: none; }
 
-/* ═══════════════════════════════════════════
-   MOBILE BACKGROUND IMAGES
-═══════════════════════════════════════════ */
-@media (max-width: 768px) {
-  .hero {
-    background-image: none;
-  }
-  /* Мобильный фон вешаем на .hero__bg — именно он анимируется (bgZoom),
-     поэтому картинка теперь «дышит»/зумируется как и на остальных блоках.
-     Раньше картинка была на самом .hero, а у .hero__bg стоял
-     background-image:none — из-за этого зума на телефоне не было. */
-  .hero__bg {
-    background-image: none;
-    background-size: 100% auto;
-    background-position: center 70px;
-    background-repeat: no-repeat;
-  }
-}
+/* Мобильный фон баннера задаётся выше, в основном блоке @media 768px
+   (см. «Мобильный hero: единый баннер, разрезанный прокруткой»).
+   Прежнее правило отсюда сбрасывало background-image в none и гасило
+   картинку — удалено. */
 
 @media (max-width: 768px) {
   .fab { right: 16px; bottom: 16px; }
