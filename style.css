@@ -182,6 +182,20 @@ ul { list-style: none; }
     rgba(0,0,0,0)    78%);
 }
 
+/* В Отзывах пятно от общего правила выше гаснет ровно к началу карусели
+   карточек — граница затухания совпадала с верхним краем первой карточки
+   и читалась как резкая линия освещения. Растягиваем пятно шире и ниже,
+   с дополнительной промежуточной ступенью, чтобы свет плавно уходил в
+   область карусели, а не обрывался на границе. */
+.reviews__bg::after {
+  background: radial-gradient(1300px 620px at 50% 230px,
+    rgba(0,0,0,0.66) 0%,
+    rgba(0,0,0,0.42) 38%,
+    rgba(0,0,0,0.20) 62%,
+    rgba(0,0,0,0.06) 82%,
+    rgba(0,0,0,0)    96%);
+}
+
 /* Волнообразное свечение вокруг бутылки */
 @keyframes bottleGlow {
   0%   {
@@ -1085,10 +1099,13 @@ ul { list-style: none; }
   margin: 0;
 }
 
-/* Карточка */
+/* Карточка — тон почти прозрачный (0.014) не давал никакого затемнения
+   на фоновом фото, из-за чего плашки выглядели "голыми" рядом с другими
+   карточками сайта (about__card, benefits__card, reviews__card), у которых
+   везде тёмная полупрозрачная подложка + блюр. Подгоняем под тот же тон. */
 .catalog__card {
   position: relative;
-  background: rgba(255,255,255,0.014);
+  background: rgba(24,22,18,0.42);
   border: 1px solid rgba(212,179,106, 0.14);
   border-radius: 14px;
   padding: 22px 20px 20px;
@@ -1096,12 +1113,14 @@ ul { list-style: none; }
   flex-direction: column;
   align-items: center;
   gap: 0;
+  backdrop-filter: blur(10px) saturate(115%);
+  -webkit-backdrop-filter: blur(10px) saturate(115%);
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease;
   cursor: default;
 }
 .catalog__card:hover {
   border-color: rgba(212,179,106, 0.42);
-  background: rgba(255,255,255,0.028);
+  background: rgba(24,22,18,0.56);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
   transform: translateY(-3px);
 }
@@ -2691,9 +2710,9 @@ ul { list-style: none; }
 }
 .checkout__cart-box {
   flex: 1;
-  background: rgba(12,12,12, 0.60);
-  backdrop-filter: blur(20px) saturate(130%);
-  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  background: rgba(12,12,12, 0.32);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
   border: 1px solid rgba(212,179,106, 0.15);
   border-radius: 20px;
   padding: 32px;
@@ -2804,9 +2823,9 @@ ul { list-style: none; }
 }
 .checkout__form-box {
   flex: 1;
-  background: rgba(12,12,12, 0.60);
-  backdrop-filter: blur(20px) saturate(130%);
-  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  background: rgba(12,12,12, 0.32);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
   border: 1px solid rgba(212,179,106, 0.15);
   border-radius: 20px;
   padding: 32px;
