@@ -2773,11 +2773,12 @@ ul { list-style: none; }
 }
 .checkout__cart-box {
   flex: 1;
-  /* Почти прозрачная плашка — фон-фото должен читаться сквозь неё
-     практически без затемнения; форму от фото отделяет только рамка. */
-  background: rgba(12,12,12, 0.05);
-  backdrop-filter: blur(4px) saturate(115%);
-  -webkit-backdrop-filter: blur(4px) saturate(115%);
+  /* Фото узнаваемо просвечивает, но плашка при этом держит собственный
+     тёмный тон — на пёстром фоне (люди, мешки, дерево) чистая прозрачность
+     съедала контраст текста и полей формы. */
+  background: rgba(10,10,10, 0.34);
+  backdrop-filter: blur(9px) saturate(120%);
+  -webkit-backdrop-filter: blur(9px) saturate(120%);
   border: 1.5px solid rgba(212,179,106, 0.55);
   border-radius: 20px;
   padding: 32px;
@@ -2888,11 +2889,12 @@ ul { list-style: none; }
 }
 .checkout__form-box {
   flex: 1;
-  /* Почти прозрачная плашка — фон-фото должен читаться сквозь неё
-     практически без затемнения; форму от фото отделяет только рамка. */
-  background: rgba(12,12,12, 0.05);
-  backdrop-filter: blur(4px) saturate(115%);
-  -webkit-backdrop-filter: blur(4px) saturate(115%);
+  /* Фото узнаваемо просвечивает, но плашка при этом держит собственный
+     тёмный тон — на пёстром фоне (люди, мешки, дерево) чистая прозрачность
+     съедала контраст текста и полей формы. */
+  background: rgba(10,10,10, 0.34);
+  backdrop-filter: blur(9px) saturate(120%);
+  -webkit-backdrop-filter: blur(9px) saturate(120%);
   border: 1.5px solid rgba(212,179,106, 0.55);
   border-radius: 20px;
   padding: 32px;
