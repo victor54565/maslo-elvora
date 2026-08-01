@@ -27,6 +27,7 @@ ul { list-style: none; }
   overflow: hidden;
   padding: 0;
   position: relative;
+  z-index: 5;
 }
 .section-divider::before {
   content: '';
@@ -95,33 +96,90 @@ ul { list-style: none; }
 }
 
 /* Статичная затемняющая полоса на стыке блоков — НЕ анимируется и НЕ зумируется вместе с фоном */
+/* Растушёвка краёв секций теперь живёт в одном градиенте на ::before
+   самой секции (см. «РАСТВОРЕНИЕ КРАЁВ СЕКЦИЙ» ниже). Старые парные
+   div-ы больше не нужны — иначе затемнение накладывалось бы дважды. */
 .block-fade-top,
-.block-fade-bottom {
+.block-fade-bottom { display: none; }
+
+/* ═══════════════════════════════════════════
+   РАСТВОРЕНИЕ КРАЁВ СЕКЦИЙ
+   Верх и низ каждого фонового фото плавно уходят в чёрный фон сайта,
+   поэтому на стыках нет жёстких горизонтальных линий.
+
+   Почему ::before секции, а не background-image на самом __bg:
+   слой .__bg анимируется (bgZoom, scale 1 → 1.1), и градиент внутри
+   него масштабировался бы вместе с фото — кромка «уезжала» бы за край
+   секции и на пике зума снова появлялся бы резкий стык. Секция не
+   анимируется, поэтому переход всегда точно на своём месте.
+
+   Стопы в px, а не в %: секции очень разной высоты (каталог ~6000px),
+   и 15% от него дало бы почти 900px затемнения. */
+.hero::before,
+.about::before,
+.catalog::before,
+.usage::before,
+.benefits::before,
+.reviews::before,
+.videos::before,
+.checkout::before,
+.footer::before {
+  content: '';
   position: absolute;
-  left: 0; right: 0;
-  height: 380px;
+  inset: 0;
   z-index: 1;
   pointer-events: none;
-}
-.block-fade-top {
-  top: 0;
-  background: linear-gradient(to bottom,
-    #000 0%,
-    rgba(0,0,0,0.88) 25%,
-    rgba(0,0,0,0.55) 55%,
-    rgba(0,0,0,0.20) 80%,
-    transparent 100%
+  background-image: linear-gradient(to bottom,
+    rgba(0,0,0,1)    0px,
+    rgba(0,0,0,0.78) 70px,
+    rgba(0,0,0,0.42) 140px,
+    rgba(0,0,0,0.16) 190px,
+    rgba(0,0,0,0)    230px,
+    rgba(0,0,0,0)    calc(100% - 230px),
+    rgba(0,0,0,0.16) calc(100% - 190px),
+    rgba(0,0,0,0.42) calc(100% - 140px),
+    rgba(0,0,0,0.78) calc(100% - 70px),
+    rgba(0,0,0,1)    100%
   );
 }
-.block-fade-bottom {
-  bottom: 0;
-  background: linear-gradient(to top,
-    #000 0%,
-    rgba(0,0,0,0.88) 25%,
-    rgba(0,0,0,0.55) 55%,
-    rgba(0,0,0,0.20) 80%,
-    transparent 100%
+
+/* У баннера растушёвка асимметричная: сверху короткая — край и так закрыт
+   тёмной шапкой навигации, а снизу длиннее и мягче, с промежуточной
+   ступенью, чтобы переход к чёрному разделителю не выглядел обрывом. */
+.hero::before {
+  background-image: linear-gradient(to bottom,
+    rgba(0,0,0,0.85) 0px,
+    rgba(0,0,0,0.45) 45px,
+    rgba(0,0,0,0.14) 85px,
+    rgba(0,0,0,0)    120px,
+    rgba(0,0,0,0)    calc(100% - 210px),
+    rgba(0,0,0,0.16) calc(100% - 170px),
+    rgba(0,0,0,0.40) calc(100% - 120px),
+    rgba(0,0,0,0.72) calc(100% - 60px),
+    rgba(0,0,0,0.94) 100%
   );
+}
+
+/* ═══════════════════════════════════════════
+   ЗАТЕМНЕНИЕ ПОД ЗАГОЛОВКАМИ СЕКЦИЙ
+   Мягкое пятно в верхней части кадра, там где стоит бейдж + заголовок:
+   текст читается на любой фотографии, а остальная часть кадра остаётся
+   светлой. Лежит на слое .__bg, поэтому не перекрывает сам контент.
+═══════════════════════════════════════════ */
+.catalog__bg::after,
+.usage__bg::after,
+.benefits__bg::after,
+.reviews__bg::after,
+.videos__bg::after,
+.checkout__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(900px 340px at 50% 190px,
+    rgba(0,0,0,0.66) 0%,
+    rgba(0,0,0,0.38) 45%,
+    rgba(0,0,0,0)    78%);
 }
 
 /* Волнообразное свечение вокруг бутылки */
@@ -226,7 +284,7 @@ ul { list-style: none; }
 }
 .nav__logo-text {
   font-family: 'Playfair Display', serif;
-  font-size: 20px; font-weight: 700; font-style: italic;
+  font-size: 20px; font-weight: 500; font-style: normal;
   letter-spacing: 0.10em;
   color: #D4B36A;
   padding-left: 2px;
@@ -299,45 +357,75 @@ ul { list-style: none; }
 ═══════════════════════════════════════════ */
 .hero {
   position: relative;
-  min-height: 100vh;
+  /* Баннер занимает ровно видимую часть экрана под шапкой: страница
+     открывается — и первый экран виден целиком, без скролла.
+     svh (а не vh) — чтобы на мобильных панель браузера не «съедала» низ. */
+  margin-top: var(--nav-h);
+  height: calc(100svh - var(--nav-h));
+  min-height: 520px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   background: #000;
 }
 
-/* Слой под фоновое изображение — сейчас чистый чёрный.
-   Элемент сохранён: позже сюда вернётся новая картинка. */
+/* Фоновое фото первого экрана — показывается целиком.
+   Анимации зума здесь СОЗНАТЕЛЬНО нет: любой scale > 1 обрезает края
+   кадра, а секция специально построена под пропорции фото, чтобы
+   ничего не срезалось. Зум остаётся у остальных блоков, где кадр
+   и так кадрируется по высоте. */
 .hero__bg {
   position: absolute;
   inset: 0;
-  background: #000;
+  /* Якорь ниже верха кадра: в фото сверху пустая стена/окно, а низ с
+     донышками бутылок обрезался под разделителем. Сдвигаем видимое окно
+     вниз по исходнику — визуально это поднимает картинку в рамке. */
+  background: #000 url('backgrounds/hero-bg.png') center 45% / cover no-repeat;
   z-index: 0;
 }
 
-/* Тонкая золотая рамка первого экрана */
-.hero__overlay {
+/* Плавающее тёмное пятно слева, под текстовым блоком — текст утопает в
+   затемнении, а правая часть фото остаётся светлой и читаемой отдельно
+   от текста. Только там, где текст стоит слева на всю высоту фото
+   (hero, about); в секциях с центрированным заголовком не нужно.
+   Радиус в px (не %) — иначе на высоких секциях с реальным фото
+   пятно растягивается на всю высоту и выглядит как чёрная заливка. */
+.hero__bg::after,
+.about__bg::after {
+  content: '';
   position: absolute;
-  inset: 24px;
-  z-index: 1;
-  border: 1px solid rgba(212,179,106,0.16);
+  inset: 0;
+  /* Вертикальный якорь в px от верха (не %) — иначе на длинной секции
+     (about с карточками) пятно съезжает ниже текста, к середине фото. */
+  background:
+    radial-gradient(560px 480px at 24% 260px, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.34) 50%, rgba(0,0,0,0) 78%),
+    linear-gradient(90deg, rgba(0,0,0,0.46) 0%, rgba(0,0,0,0.20) 30%, rgba(0,0,0,0) 55%);
   pointer-events: none;
 }
 
-/* Нижняя граница первого экрана — золотая нить */
-.hero__fade-bottom {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 1px;
-  z-index: 2;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(212,179,106,0.35) 30%,
-    rgba(243,227,184,0.65) 50%,
-    rgba(212,179,106,0.35) 70%,
-    transparent 100%);
-  pointer-events: none;
+/* В About текста заметно больше, чем в баннере (заголовок в три строки +
+   абзац + кнопка), и фото под ним светлее — поэтому левая колонка гасится
+   сильнее и на большую ширину, до 62% кадра. */
+.about__bg::after {
+  background:
+    radial-gradient(620px 560px at 22% 300px, rgba(0,0,0,0.74) 0%, rgba(0,0,0,0.46) 50%, rgba(0,0,0,0) 80%),
+    linear-gradient(90deg,
+      rgba(0,0,0,0.68) 0%,
+      rgba(0,0,0,0.52) 18%,
+      rgba(0,0,0,0.30) 38%,
+      rgba(0,0,0,0.10) 52%,
+      rgba(0,0,0,0)    62%);
 }
+
+/* Декоративная золотая рамка-прямоугольник первого экрана убрана —
+   на фотографии она читалась как случайная тонкая обводка.
+   Элемент оставлен в разметке, просто не рисуется. */
+.hero__overlay { display: none; }
+
+/* Золотая нить по нижнему краю баннера убрана: сразу под ней идёт такая
+   же линия внутри разделителя, и на стыке читались две полоски подряд.
+   Осталась одна — та, что с ромбом в разделителе. */
+.hero__fade-bottom { display: none; }
 
 /* Text wrapper — anchored left, bottles float freely on right */
 .hero__inner {
@@ -347,7 +435,9 @@ ul { list-style: none; }
   max-width: 1280px;
   width: 100%;
   margin: 0 auto;
-  padding: 180px 40px 220px;
+  /* Стеклянный виджет внизу убран — большой нижний отступ под него
+     больше не нужен, текст центрируется свободно по высоте баннера. */
+  padding: clamp(24px, 6vh, 80px) 40px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -382,6 +472,22 @@ ul { list-style: none; }
   letter-spacing: 0.01em; color: #fff;
   margin-bottom: 26px;
 }
+
+/* Тень под весь текст в блоках с фоновыми фотографиями —
+   свойство text-shadow наследуется, поэтому одного правила на
+   контейнер секции хватает на все заголовки, подписи и параграфы
+   внутри (включая градиентный текст на background-clip: text). */
+.hero__inner,
+.about__container,
+.catalog__container,
+.usage__container,
+.benefits__container,
+.reviews__container,
+.videos__container,
+.checkout__container,
+.footer__container {
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
 .hero__title em {
   display: block;
   font-family: 'Playfair Display', serif;
@@ -392,7 +498,7 @@ ul { list-style: none; }
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: lavaFlow 9s ease-in-out infinite;
+  animation: lavaFlow 13s ease-in-out infinite;
 }
 .hero__subtitle {
   font-size: 15px; font-weight: 300; line-height: 1.85;
@@ -402,21 +508,41 @@ ul { list-style: none; }
 }
 .hero__actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 
+/* ═══════════════════════════════════════════
+   СЛОВЕСНЫЙ ЗНАК ELVORA
+   Название бренда набирается прямым (не курсивным) шрифтом с засечками
+   и умеренным весом: курсив + bold, доставшиеся от прежнего заголовка,
+   читались как кричащая надпись, а не как логотип. Разрядка добавляет
+   спокойствия — так же, как в шапке и подвале.
+   Класс вешается на <em>, поэтому италик нужно гасить явно.
+═══════════════════════════════════════════ */
+.wordmark {
+  font-family: 'Playfair Display', serif;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
 /* Buttons */
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
-  padding: 15px 34px; border-radius: 10px;
-  font-size: 11px; font-weight: 600;
+  padding: 18px 42px; border-radius: 10px;
+  font-size: 12.5px; font-weight: 600;
   letter-spacing: 0.20em; text-transform: uppercase;
   cursor: pointer; border: none; white-space: nowrap;
   transition: transform 0.1s ease, box-shadow 0.14s ease, background 0.18s;
 }
 .btn--primary {
   color: #0A0A0A;
+  /* Подсветка в покое, а не только на ховере: на фотофоне кнопка иначе
+     теряется среди тёплых пятен кадра. */
+  box-shadow: 0 0 22px rgba(212,179,106, 0.30),
+              0 0 48px rgba(212,179,106, 0.14);
   transition: box-shadow 0.25s ease, transform 0.15s ease;
 }
 .btn--primary:hover {
-  box-shadow: 0 0 26px rgba(212,179,106, 0.45);
+  box-shadow: 0 0 34px rgba(212,179,106, 0.60),
+              0 0 70px rgba(212,179,106, 0.26);
 }
 .btn--primary:active {
   transform: scale(0.965);
@@ -425,8 +551,11 @@ ul { list-style: none; }
               0 0 50px rgba(176,139,62,.22);
 }
 .btn--outline {
-  background: transparent; color: rgba(255,255,255,0.88);
-  border: 1px solid rgba(212,179,106,0.40);
+  background: rgba(10,10,10,0.34); color: #fff;
+  border: 1px solid rgba(212,179,106,0.55);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 18px rgba(212,179,106, 0.16),
+              inset 0 0 16px rgba(212,179,106, 0.06);
   transition: border-color 0.25s, background 0.25s, box-shadow 0.25s, color 0.25s;
 }
 .btn--outline:hover {
@@ -510,7 +639,7 @@ ul { list-style: none; }
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background-image: none;
+  background: #000 url('backgrounds/about-bg.png') center/cover no-repeat;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -769,7 +898,10 @@ ul { list-style: none; }
      сохранена — картинка сможет вернуться в .hero__bg без правок HTML. */
   .hero {
     display: flex;
-    min-height: 100svh;
+    /* На мобильном контент выше, чем экран, поэтому фиксированную высоту
+       снимаем: экран — это минимум, дальше блок растёт под содержимое. */
+    height: auto;
+    min-height: calc(100svh - var(--nav-h));
     background: #000;
   }
   .hero__bg {
@@ -837,7 +969,7 @@ ul { list-style: none; }
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background-image: none;
+  background: #000 url('backgrounds/catalog-bg.png') center/cover no-repeat;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -899,6 +1031,7 @@ ul { list-style: none; }
   text-transform: uppercase;
   color: rgba(255,255,255,0.38);
 }
+
 
 /* ── Фильтр по группам (чипы над каталогом) ──
    Строится в JS (main.js, Catalog CMS) на основе данных товаров:
@@ -1261,6 +1394,10 @@ ul { list-style: none; }
    разметку и рабочие правила ниже.
 ═══════════════════════════════════════════ */
 :root {
+  /* Высота фиксированной шапки: .nav__inner 78px + 1px нижняя граница.
+     От неё считается высота первого экрана. */
+  --nav-h: 79px;
+
   --gold:        #D4B36A;
   --gold-light:  #F3E3B8;
   --gold-mid:    #B08B3E;
@@ -1289,13 +1426,27 @@ ul { list-style: none; }
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background-image: none;
+  background: #000 url('backgrounds/usage-bg.png') center/cover no-repeat;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   animation: bgZoom 16s ease-in-out infinite;
   will-change: transform;
   pointer-events: none;
+}
+/* «Применение»: затемнение под заголовком (общее правило ниже) плюс
+   дополнительное затемнение по бокам кадра. */
+.usage__bg::after {
+  background:
+    radial-gradient(900px 340px at 50% 190px,
+      rgba(0,0,0,0.66) 0%,
+      rgba(0,0,0,0.38) 45%,
+      rgba(0,0,0,0)    78%),
+    linear-gradient(90deg,
+      rgba(0,0,0,0.68) 0%,
+      rgba(0,0,0,0) 20%,
+      rgba(0,0,0,0) 80%,
+      rgba(0,0,0,0.68) 100%);
 }
 .usage__container {
   position: relative;
@@ -1511,7 +1662,7 @@ ul { list-style: none; }
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background-image: none;
+  background: #000 url('backgrounds/benefits-bg.png') center/cover no-repeat;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1548,7 +1699,9 @@ ul { list-style: none; }
   font-weight: 700; line-height: 1.12;
   color: #fff;
 }
-.benefits__title em { font-style: italic; color: var(--accent-orange); }
+/* Курсив здесь не задаётся: единственный em в этом заголовке — слово
+   ELVORA, а словесный знак бренда всегда прямой (см. .wordmark). */
+.benefits__title em { color: var(--accent-orange); }
 
 /* ══════════════════════════════════════
    КОЛОДА КАРТОЧЕК (deck / stack carousel)
@@ -1757,7 +1910,7 @@ ul { list-style: none; }
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background-image: none;
+  background: #000 url('backgrounds/reviews-bg.png') center/cover no-repeat;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1987,7 +2140,7 @@ ul { list-style: none; }
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background-image: none;
+  background: #000 url('backgrounds/videos-bg.png') center/cover no-repeat;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -2198,7 +2351,7 @@ ul { list-style: none; }
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background-image: none;
+  background: #000 url('backgrounds/footer-bg.png') center/cover no-repeat;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -2228,7 +2381,7 @@ ul { list-style: none; }
 }
 .footer__logo-text {
   font-family: 'Playfair Display', serif;
-  font-size: 20px; font-weight: 700; font-style: italic;
+  font-size: 20px; font-weight: 500; font-style: normal;
   letter-spacing: 0.10em; color: #D4B36A;
 }
 .footer__tagline {
@@ -2369,18 +2522,18 @@ ul { list-style: none; }
    Единый источник истины для золотого градиента
 ═══════════════════════════════════════════ */
 :root {
-  /* Благородный золотой перелив: тёмное золото → светлый блик → золото */
+  /* Благородный золотой перелив — узкий диапазон яркости, без резких
+     скачков в тёмно-коричневый или почти белый: только оттенки золота. */
   --grad-accent: linear-gradient(135deg,
-    #8C6B2F 0%,
-    #D4B36A 20%,
-    #F3E3B8 40%,
-    #D4B36A 60%,
-    #B08B3E 80%,
-    #E8CE96 100%);
-  --grad-accent-size: 260% 260%;
+    #B4863D 0%,
+    #E4C687 25%,
+    #F0DDA6 50%,
+    #E4C687 75%,
+    #B4863D 100%);
+  --grad-accent-size: 200% 200%;
 }
 
-/* Мягкое движение золотого блика */
+/* Мягкое движение золотого блика — медленнее и без резких прыжков */
 @keyframes lavaFlow {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
@@ -2471,7 +2624,7 @@ ul { list-style: none; }
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background-image: none;
+  background: #000 url('backgrounds/checkout-bg.png') center/cover no-repeat;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -2930,7 +3083,7 @@ ul { list-style: none; }
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: lavaFlow 7s ease-in-out infinite;
+  animation: lavaFlow 13s ease-in-out infinite;
 }
 .checkout__title em { -webkit-text-fill-color: transparent; }
 
@@ -2938,7 +3091,7 @@ ul { list-style: none; }
 .benefits__card-line, .usage__dot.is-active {
   background-image: var(--grad-accent) !important;
   background-size: var(--grad-accent-size);
-  animation: lavaFlow 7s ease-in-out infinite;
+  animation: lavaFlow 13s ease-in-out infinite;
 }
 
 /* Более мягкий, плавный перелив для кнопок — больше оттенков, крупнее полотно градиента.
