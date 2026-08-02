@@ -967,11 +967,6 @@ window.addEventListener('pageshow', (e) => {
       thumb.appendChild(bg);
     }
 
-    const play = document.createElement('div');
-    play.className = 'videos__play';
-    play.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v14l11-7-11-7z"/></svg>';
-    thumb.appendChild(play);
-
     if (v.duration) {
       const dur = document.createElement('div');
       dur.className = 'videos__duration';

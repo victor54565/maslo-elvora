@@ -383,11 +383,9 @@ ul { list-style: none; }
   background: #000;
 }
 
-/* Фоновое фото первого экрана — показывается целиком.
-   Анимации зума здесь СОЗНАТЕЛЬНО нет: любой scale > 1 обрезает края
-   кадра, а секция специально построена под пропорции фото, чтобы
-   ничего не срезалось. Зум остаётся у остальных блоков, где кадр
-   и так кадрируется по высоте. */
+/* Фоновое фото первого экрана — показывается целиком, .hero держит
+   overflow:hidden, так что лёгкий zoom (как и в остальных секциях)
+   ничего не подрезает за пределами рамки. */
 .hero__bg {
   position: absolute;
   inset: 0;
@@ -396,6 +394,7 @@ ul { list-style: none; }
      вниз по исходнику — визуально это поднимает картинку в рамке. */
   background: #000 url('backgrounds/hero-bg.png') center 45% / cover no-repeat;
   z-index: 0;
+  animation: bgZoom 16s ease-in-out infinite;
 }
 
 /* Плавающее тёмное пятно слева, под текстовым блоком — текст утопает в
@@ -948,6 +947,9 @@ ul { list-style: none; }
     pointer-events: none;
     /* Прозрачно на первом экране (фото открыто), плотнее к низу — там,
        где лежит текст, и на стыке с чёрным разделителем. */
+    /* Последняя ступень доведена до чистого чёрного (было 0.96) —
+       иначе на стыке с .section-divider (сплошной #000 сразу под
+       баннером) оставалась едва заметная, но резкая граница. */
     background: linear-gradient(to bottom,
       rgba(0,0,0,0.30) 0%,
       rgba(0,0,0,0.10) 12%,
@@ -955,8 +957,8 @@ ul { list-style: none; }
       rgba(0,0,0,0.22) 46%,
       rgba(0,0,0,0.52) 58%,
       rgba(0,0,0,0.74) 70%,
-      rgba(0,0,0,0.88) 84%,
-      rgba(0,0,0,0.96) 100%);
+      rgba(0,0,0,0.90) 84%,
+      #000 100%);
   }
   .hero::before { display: none; }
 
@@ -1255,13 +1257,24 @@ ul { list-style: none; }
   left: 50%;
   width: 260px;
   height: 300px;
-  background: radial-gradient(
-    ellipse 130px 155px at center,
-    rgba(255, 224, 140, 0.50) 0%,
-    rgba(255, 205, 110, 0.30) 35%,
-    rgba(232, 178, 80, 0.14) 60%,
-    transparent 80%
-  );
+  /* Второй слой — отдельное пятно у самого низа бутылки: основная
+     эллиптическая подсветка центрирована по середине блока, и её радиус
+     гаснет в ноль задолго до донышка — низ бутылки оставался тёмным,
+     пока верх/горлышко подсвечивались. */
+  background:
+    radial-gradient(
+      ellipse 130px 155px at center,
+      rgba(255, 224, 140, 0.50) 0%,
+      rgba(255, 205, 110, 0.30) 35%,
+      rgba(232, 178, 80, 0.14) 60%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse 150px 100px at center bottom,
+      rgba(255, 205, 110, 0.32) 0%,
+      rgba(232, 178, 80, 0.16) 50%,
+      transparent 78%
+    );
   filter: blur(32px);
   animation: bottleGlow 2.5s ease-in-out infinite;
   pointer-events: none;
@@ -2059,10 +2072,15 @@ ul { list-style: none; }
 
 .reviews__marquee {
   overflow: hidden;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  margin-top: -12px;
-  margin-bottom: -12px;
+  /* На hover карточка получает box-shadow с blur до 44px (плюс подъём
+     translateY(-4px)) — 12px запаса обрезали это свечение ровно
+     посередине, и сверху/снизу плашки читалась резкая линия среза
+     вместо мягкого затухания. 56px хватает, чтобы весь ореол погас
+     до того, как upереть в overflow:hidden. */
+  padding-top: 56px;
+  padding-bottom: 56px;
+  margin-top: -56px;
+  margin-bottom: -56px;
   width: 100vw;
   position: relative;
   left: 50%;
@@ -2338,26 +2356,6 @@ ul { list-style: none; }
       rgba(255,255,255,0.015) 28px,
       rgba(255,255,255,0.015) 29px
     );
-}
-
-/* Play button */
-.videos__play {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  width: 52px; height: 52px;
-  border-radius: 50%;
-  background: var(--grad-gold-text);
-  display: flex; align-items: center; justify-content: center;
-  color: #fff;
-  box-shadow: 0 0 0 6px rgba(140,107,47,0.15), 0 8px 24px rgba(140,107,47,0.45);
-  transition: transform 0.28s cubic-bezier(0.22,1,0.36,1),
-              box-shadow 0.28s ease;
-}
-.videos__play svg { width: 22px; height: 22px; margin-left: 3px; }
-.videos__card:hover .videos__play {
-  transform: translate(-50%, -50%) scale(1.14);
-  box-shadow: 0 0 0 10px rgba(140,107,47,0.12), 0 12px 32px rgba(140,107,47,0.60);
 }
 
 /* Duration badge */
