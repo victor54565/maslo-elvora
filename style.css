@@ -1836,11 +1836,14 @@ ul { list-style: none; }
 .benefits__card {
   position: absolute;
   inset: 0;
-  background: rgba(10,10,10,0.62);
-  border: 1px solid rgba(212,179,106, 0.16);
+  /* Затемнение/прозрачность — как у .checkout__form-box, по просьбе
+     пользователя привести плашки к единому виду с блоком «Оформление
+     заказа». */
+  background: rgba(10,10,10, 0.34);
+  border: 1.5px solid rgba(212,179,106, 0.55);
   border-radius: 20px;
-  backdrop-filter: blur(16px) saturate(110%);
-  -webkit-backdrop-filter: blur(16px) saturate(110%);
+  backdrop-filter: blur(9px) saturate(120%);
+  -webkit-backdrop-filter: blur(9px) saturate(120%);
   padding: 32px 30px 26px;
   display: flex;
   flex-direction: column;
