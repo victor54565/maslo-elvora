@@ -1765,6 +1765,15 @@ ul { list-style: none; }
   will-change: transform;
   pointer-events: none;
 }
+@media (max-width: 768px) {
+  .benefits__bg {
+    background: #000 url('backgrounds/benefits-bg-mobile.png') center/cover no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: none;
+  }
+}
 .benefits__container {
   position: relative;
   z-index: 1;
