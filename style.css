@@ -3690,6 +3690,10 @@ ul { list-style: none; }
   gap: 22px;
 }
 .pdp__badge {
+  /* Выше слоя свечения (::after сцены, z-index 0) — иначе ореол
+     засвечивал надпись */
+  position: relative;
+  z-index: 2;
   align-self: flex-start;
   padding: 7px 15px;
   border-radius: 999px;
@@ -3717,16 +3721,17 @@ ul { list-style: none; }
 .pdp__stage::after {
   content: '';
   position: absolute;
-  /* Уходим ниже дна сцены: источник света должен «выступать» за бутылку,
-     иначе ореол упирается в край и обрывается линией. */
-  bottom: -24px;
   left: 50%;
-  /* Высота с запасом (520 против 420 у сцены): область света уменьшается
-     вместе с бутылкой, но обязана перекрывать её целиком. При прежних
-     500px маленькая бутылка 100 мл вылезала верхушкой за пределы
-     свечения — подсвечивался только низ. */
+  /* Центрируем свет по бутылке (она тоже стоит по центру сцены), а не
+     прижимаем ко дну: при прижатии ко дну маленькая бутылка 100 мл —
+     она центрирована, поэтому её верх выше — выпадала из подсветки.
+     Смещение по вертикали делаем через margin-top: transform занят
+     анимацией bottleGlow и перезаписал бы любой translateY.
+     +14px — лёгкий сдвиг вниз, чтобы свет не «висел» над бутылкой. */
+  top: 50%;
   width: calc(440px * var(--glow-scale));
-  height: calc(520px * var(--glow-scale));
+  height: calc(580px * var(--glow-scale));
+  margin-top: calc(-290px * var(--glow-scale) + 14px);
   background:
     /* Основное свечение — центр поднят к верхней половине бутылки,
        иначе эллипс садится вниз и горлышко остаётся тёмным */
@@ -3786,6 +3791,9 @@ ul { list-style: none; }
 .pdp__bottle--250.is-active { transform: scale(0.86); }
 
 .pdp__marks {
+  /* Тоже поверх свечения — «100% / < 40°C / 0 добавок» не должны тонуть в свете */
+  position: relative;
+  z-index: 2;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -4101,6 +4109,15 @@ ul { list-style: none; }
 @media (max-width: 900px) {
   .pdp__main { grid-template-columns: 1fr; gap: 34px; }
   .pdp__stage { height: 340px; }
+  /* Свет задан в абсолютных px и сам по себе не уменьшается вместе со
+     сценой — на узких экранах он вылезал за пределы карточки. Ужимаем
+     его пропорционально высоте сцены. */
+  .pdp__stage::after {
+    width: calc(360px * var(--glow-scale));
+    height: calc(450px * var(--glow-scale));
+    margin-top: calc(-225px * var(--glow-scale) + 12px);
+    filter: blur(36px);
+  }
   .pdp__details { margin-top: 44px; }
 }
 @media (max-width: 560px) {
@@ -4108,6 +4125,15 @@ ul { list-style: none; }
   .pdp__container { width: calc(100% - 32px); }
   .pdp__media { padding: 20px; }
   .pdp__stage { height: 280px; }
+  /* Телефон: свет ещё компактнее и мягче — он не должен выходить за
+     края карточки и забивать подписи. brightness чуть гасит ореол
+     (opacity задавать нельзя: её анимирует bottleGlow). */
+  .pdp__stage::after {
+    width: calc(300px * var(--glow-scale));
+    height: calc(370px * var(--glow-scale));
+    margin-top: calc(-185px * var(--glow-scale) + 10px);
+    filter: blur(30px) brightness(0.88);
+  }
   .pdp__vol-row { grid-template-columns: 1fr; }
   .pdp__vol { flex-direction: row; align-items: baseline; justify-content: space-between; }
   .pdp__panel { padding: 22px 20px; }
