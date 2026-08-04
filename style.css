@@ -14,6 +14,19 @@ body  {
 a  { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
+/* Масштаб свечения под бутылкой (каталог и страница товара): размер
+   области света считается через calc() от --glow-scale, а сама переменная
+   переключается по выбранному объёму.
+
+   Регистрация через @property нужна, чтобы переменную можно было плавно
+   анимировать — обычная (незарегистрированная) custom property меняется
+   скачком, и transition на зависящих от неё width/height не работает. */
+@property --glow-scale {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+
 /* Section Dividers — тонкая золотая линия с ромбом по центру.
    Раньше здесь лежала растровая «цепь» (chain-divider.png);
    теперь разделитель полностью векторный и невесомый. */
@@ -1249,14 +1262,17 @@ ul { list-style: none; }
 /* Свечение вокруг всей бутылки */
 .catalog__bottle-stage {
   --glow-scale: 1;
+  /* Плавно анимируем саму переменную: transform у ::after занят
+     анимацией bottleGlow и перезаписал бы масштаб */
+  transition: --glow-scale 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .catalog__bottle-stage::after {
   content: '';
   position: absolute;
   bottom: 10px;
   left: 50%;
-  width: 260px;
-  height: 300px;
+  width: calc(260px * var(--glow-scale));
+  height: calc(300px * var(--glow-scale));
   /* Второй слой — отдельное пятно у самого низа бутылки: основная
      эллиптическая подсветка центрирована по середине блока, и её радиус
      гаснет в ноль задолго до донышка — низ бутылки оставался тёмным,
@@ -1279,24 +1295,15 @@ ul { list-style: none; }
   animation: bottleGlow 2.5s ease-in-out infinite;
   pointer-events: none;
   transform-origin: bottom center;
-  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1), height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 0;
 }
-/* Свет уменьшается вместе с бутылкой — сама область свечения сжимается,
-   а не transform (тот управляется анимацией bottleGlow и перезаписал бы масштаб) */
+/* Свет уменьшается вместе с бутылкой — сжимается сама область свечения,
+   а не transform (тот занят анимацией bottleGlow и перезаписал бы масштаб) */
 .catalog__bottle-stage:has(.catalog__bottle.is-active.scale-sm) {
   --glow-scale: 0.62;
 }
 .catalog__bottle-stage:has(.catalog__bottle.is-active.scale-md) {
   --glow-scale: 0.80;
-}
-.catalog__bottle-stage:has(.catalog__bottle.is-active.scale-sm)::after {
-  width: calc(260px * var(--glow-scale));
-  height: calc(300px * var(--glow-scale));
-}
-.catalog__bottle-stage:has(.catalog__bottle.is-active.scale-md)::after {
-  width: calc(260px * var(--glow-scale));
-  height: calc(300px * var(--glow-scale));
 }
 
 /* Все бутылки скрыты по умолчанию.
@@ -3698,40 +3705,65 @@ ul { list-style: none; }
 /* Сцена с бутылкой: свечение под ней — как в каталоге, двумя слоями,
    чтобы низ бутылки не оставался тёмным. */
 .pdp__stage {
+  --glow-scale: 1;
   position: relative;
   width: 100%;
   height: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: --glow-scale 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .pdp__stage::after {
   content: '';
   position: absolute;
-  bottom: 6px;
+  /* Уходим ниже дна сцены: источник света должен «выступать» за бутылку,
+     иначе ореол упирается в край и обрывается линией. */
+  bottom: -24px;
   left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
-  height: 340px;
+  /* Высота с запасом (520 против 420 у сцены): область света уменьшается
+     вместе с бутылкой, но обязана перекрывать её целиком. При прежних
+     500px маленькая бутылка 100 мл вылезала верхушкой за пределы
+     свечения — подсвечивался только низ. */
+  width: calc(440px * var(--glow-scale));
+  height: calc(520px * var(--glow-scale));
   background:
+    /* Основное свечение — центр поднят к верхней половине бутылки,
+       иначе эллипс садится вниз и горлышко остаётся тёмным */
     radial-gradient(
-      ellipse 150px 175px at center,
-      rgba(255, 224, 140, 0.50) 0%,
-      rgba(255, 205, 110, 0.30) 35%,
-      rgba(232, 178, 80, 0.14) 60%,
-      transparent 80%
+      ellipse 215px 275px at center 52%,
+      rgba(255, 238, 180, 0.74) 0%,
+      rgba(255, 216, 132, 0.52) 30%,
+      rgba(238, 190, 98, 0.27) 56%,
+      rgba(228, 172, 74, 0.11) 72%,
+      transparent 86%
     ),
+    /* Отдельное пятно у донышка — низ бутылки не должен проваливаться */
     radial-gradient(
-      ellipse 170px 110px at center bottom,
-      rgba(255, 205, 110, 0.32) 0%,
-      rgba(232, 178, 80, 0.16) 50%,
+      ellipse 245px 155px at center 88%,
+      rgba(255, 218, 132, 0.46) 0%,
+      rgba(238, 188, 96, 0.24) 48%,
       transparent 78%
+    ),
+    /* Дальний мягкий ореол — уводит свет за пределы бутылки */
+    radial-gradient(
+      ellipse 320px 370px at center 54%,
+      rgba(245, 198, 108, 0.21) 0%,
+      rgba(232, 178, 80, 0.10) 55%,
+      transparent 82%
     );
-  filter: blur(34px);
+  filter: blur(42px);
+  /* transform не задаём: им управляет bottleGlow (там же translate(-50%)) */
   animation: bottleGlow 2.5s ease-in-out infinite;
+  transform-origin: bottom center;
   pointer-events: none;
   z-index: 0;
 }
+/* Свет сжимается вместе с бутылкой — меняем размер области, а не transform
+   (его перезаписала бы анимация bottleGlow). Коэффициенты совпадают
+   с масштабом самих бутылок ниже. */
+.pdp__stage:has(.pdp__bottle--100.is-active) { --glow-scale: 0.72; }
+.pdp__stage:has(.pdp__bottle--250.is-active) { --glow-scale: 0.86; }
 .pdp__bottle {
   position: absolute;
   max-height: 100%;
