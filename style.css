@@ -3620,3 +3620,465 @@ ul { list-style: none; }
   .cart-toast { top: 82px; font-size: 13px; padding: 10px 18px; }
 }
 
+
+/* ═══════════════════════════════════════════
+   СТРАНИЦА ТОВАРА (product.html)
+   Отдельная страница масла: крупная бутылка, выбор объёма,
+   состав / применение / хранение. Оформление то же, что на
+   витрине — плашки с золотой рамкой на чёрном.
+═══════════════════════════════════════════ */
+.product-page { background: #000; }
+
+.pdp {
+  /* Шапка фиксированная — отступаем на её высоту, иначе крошки уезжают под неё */
+  padding: calc(var(--nav-h) + 36px) 0 90px;
+}
+.pdp__container {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+/* --- хлебные крошки --- */
+.pdp__crumbs {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 32px;
+}
+.pdp__crumbs a { transition: color 0.2s; }
+.pdp__crumbs a:hover { color: var(--gold); }
+.pdp__crumb-sep { color: rgba(212,179,106,0.35); }
+.pdp__crumb-current { color: rgba(255,255,255,0.80); }
+
+.pdp__state {
+  color: rgba(255,255,255,0.55);
+  font-size: 15px;
+  padding: 40px 0;
+  text-align: center;
+}
+
+/* --- верхний блок: фото + покупка --- */
+.pdp__main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+/* --- фото --- */
+.pdp__media {
+  position: relative;
+  border: 1.5px solid rgba(212,179,106, 0.35);
+  border-radius: 20px;
+  background: rgba(10,10,10, 0.34);
+  backdrop-filter: blur(9px) saturate(120%);
+  -webkit-backdrop-filter: blur(9px) saturate(120%);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+.pdp__badge {
+  align-self: flex-start;
+  padding: 7px 15px;
+  border-radius: 999px;
+  border: 1px solid rgba(212,179,106, 0.40);
+  background: rgba(212,179,106, 0.08);
+  color: var(--gold-light);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Сцена с бутылкой: свечение под ней — как в каталоге, двумя слоями,
+   чтобы низ бутылки не оставался тёмным. */
+.pdp__stage {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pdp__stage::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 340px;
+  background:
+    radial-gradient(
+      ellipse 150px 175px at center,
+      rgba(255, 224, 140, 0.50) 0%,
+      rgba(255, 205, 110, 0.30) 35%,
+      rgba(232, 178, 80, 0.14) 60%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse 170px 110px at center bottom,
+      rgba(255, 205, 110, 0.32) 0%,
+      rgba(232, 178, 80, 0.16) 50%,
+      transparent 78%
+    );
+  filter: blur(34px);
+  animation: bottleGlow 2.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+.pdp__bottle {
+  position: absolute;
+  max-height: 100%;
+  max-width: 78%;
+  object-fit: contain;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.94);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  z-index: 1;
+  filter: drop-shadow(0 18px 34px rgba(0,0,0,0.55));
+}
+.pdp__bottle.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+/* Меньшие объёмы — физически меньшая бутылка */
+.pdp__bottle--100.is-active { transform: scale(0.72); }
+.pdp__bottle--250.is-active { transform: scale(0.86); }
+
+.pdp__marks {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.pdp__mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(212,179,106, 0.20);
+  background: rgba(255,255,255, 0.02);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.50);
+}
+.pdp__mark b {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--gold-light);
+}
+
+/* --- правая колонка: название, объёмы, покупка --- */
+.pdp__buy { padding-top: 6px; }
+.pdp__eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: rgba(212,179,106, 0.75);
+  margin-bottom: 14px;
+}
+.pdp__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 3.6vw, 46px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+  background: var(--grad-gold-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 18px;
+}
+.pdp__lead {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.72);
+  margin-bottom: 30px;
+}
+
+.pdp__vol-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 12px;
+}
+.pdp__vol-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 26px;
+}
+.pdp__vol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 14px 15px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(212,179,106, 0.22);
+  background: rgba(255,255,255, 0.02);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.22s, background 0.22s, transform 0.12s;
+}
+.pdp__vol:hover:not(:disabled) {
+  border-color: rgba(212,179,106, 0.55);
+  background: rgba(212,179,106, 0.07);
+}
+.pdp__vol:disabled { opacity: 0.4; cursor: not-allowed; }
+.pdp__vol.is-active {
+  border-color: var(--gold);
+  background: rgba(212,179,106, 0.12);
+}
+.pdp__vol-size {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.50);
+}
+.pdp__vol.is-active .pdp__vol-size { color: rgba(255,255,255,0.75); }
+.pdp__vol-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+}
+.pdp__vol.is-active .pdp__vol-price { color: var(--gold-light); }
+
+.pdp__total-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 18px 0;
+  border-top: 1px solid rgba(212,179,106, 0.18);
+  margin-bottom: 20px;
+}
+.pdp__total-label {
+  font-size: 13px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+.pdp__total {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 700;
+  background: var(--grad-gold-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pdp__buy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 17px 24px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #F3E3B8 0%, #D4B36A 50%, #B08B3E 100%);
+  color: #0A0A0A;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: box-shadow 0.25s, transform 0.12s, filter 0.2s;
+  box-shadow: 0 10px 28px rgba(212,179,106, 0.22);
+}
+.pdp__buy-btn:hover:not(:disabled) {
+  filter: brightness(1.06);
+  box-shadow: 0 14px 36px rgba(212,179,106, 0.34);
+}
+.pdp__buy-btn:active:not(:disabled) { transform: translateY(1px); }
+.pdp__buy-btn:disabled {
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.40);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.pdp__back {
+  display: block;
+  margin-top: 14px;
+  padding: 14px;
+  text-align: center;
+  border: 1px solid rgba(212,179,106, 0.28);
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  transition: border-color 0.22s, color 0.22s, background 0.22s;
+}
+.pdp__back:hover {
+  border-color: rgba(212,179,106, 0.55);
+  background: rgba(212,179,106, 0.06);
+  color: var(--gold-light);
+}
+
+.pdp__note {
+  margin-top: 22px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.38);
+}
+
+/* --- нижние панели: состав / применение / хранение --- */
+.pdp__details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 56px;
+}
+.pdp__panel {
+  border: 1.5px solid rgba(212,179,106, 0.35);
+  border-radius: 20px;
+  background: rgba(10,10,10, 0.34);
+  backdrop-filter: blur(9px) saturate(120%);
+  -webkit-backdrop-filter: blur(9px) saturate(120%);
+  padding: 28px 26px;
+}
+.pdp__panel-title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: 'Playfair Display', serif;
+  font-size: 21px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 18px;
+}
+.pdp__panel-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(212,179,106, 0.30);
+  background: rgba(212,179,106, 0.08);
+  color: var(--gold);
+}
+.pdp__panel-text {
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.68);
+}
+.pdp__composition li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.68);
+}
+.pdp__composition li + li { margin-top: 11px; }
+/* Маркер-ромб в цвет бренда вместо стандартной точки */
+.pdp__composition li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  transform: rotate(45deg);
+  background: var(--gold);
+  opacity: 0.85;
+}
+
+/* --- другие масла категории --- */
+.pdp__related { margin-top: 64px; }
+.pdp__related-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 22px;
+}
+.pdp__related-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+.pdp__related-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 22px 16px;
+  border: 1px solid rgba(212,179,106, 0.20);
+  border-radius: 14px;
+  background: rgba(24,22,18, 0.42);
+  backdrop-filter: blur(10px) saturate(115%);
+  -webkit-backdrop-filter: blur(10px) saturate(115%);
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.pdp__related-card:hover {
+  border-color: rgba(212,179,106, 0.55);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 38px rgba(0,0,0,0.5), 0 0 24px rgba(212,179,106, 0.14);
+}
+.pdp__related-card img {
+  height: 130px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+.pdp__related-name {
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+  color: rgba(255,255,255,0.75);
+}
+
+/* --- ссылка «Подробнее» на карточке каталога --- */
+.catalog__more {
+  display: block;
+  margin-top: 12px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.10em;
+  color: rgba(212,179,106, 0.80);
+  transition: color 0.2s;
+}
+.catalog__more:hover { color: var(--gold-light); }
+
+/* --- адаптив --- */
+@media (max-width: 900px) {
+  .pdp__main { grid-template-columns: 1fr; gap: 34px; }
+  .pdp__stage { height: 340px; }
+  .pdp__details { margin-top: 44px; }
+}
+@media (max-width: 560px) {
+  .pdp { padding: calc(var(--nav-h) + 24px) 0 64px; }
+  .pdp__container { width: calc(100% - 32px); }
+  .pdp__media { padding: 20px; }
+  .pdp__stage { height: 280px; }
+  .pdp__vol-row { grid-template-columns: 1fr; }
+  .pdp__vol { flex-direction: row; align-items: baseline; justify-content: space-between; }
+  .pdp__panel { padding: 22px 20px; }
+  .pdp__related-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pdp__related-card img { height: 100px; }
+}

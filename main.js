@@ -231,7 +231,15 @@
     if (p.available === false) buyBtn.disabled = true;
 
     bottom.append(priceWrap, buyBtn);
-    info.append(name, bottom);
+
+    // Переход на страницу товара с полным описанием (состав, применение,
+    // хранение) — product.html читает id из строки запроса.
+    const moreLink = document.createElement('a');
+    moreLink.className = 'catalog__more';
+    moreLink.href = 'product.html?id=' + encodeURIComponent(p.id);
+    moreLink.textContent = 'Подробнее о масле →';
+
+    info.append(name, bottom, moreLink);
 
     if (p.available === false) {
       const outLabel = document.createElement('span');
@@ -590,6 +598,31 @@ window.addEventListener('pageshow', (e) => {
 
   window.addToCart = addToCart;
   window.cart = cart;
+
+  /* Товар, добавленный на странице product.html. Корзина живёт в памяти
+     этой страницы, поэтому карточка товара кладёт позицию в sessionStorage,
+     а мы забираем её при загрузке главной и сразу очищаем ключ — чтобы
+     обновление страницы не добавило то же самое повторно.
+
+     Ждём DOMContentLoaded: addToCart шлёт событие cart:change, а плавающая
+     кнопка подписывается на него ниже по файлу — сработай мы сразу, счётчик
+     на ней не обновился бы (событие ушло бы в пустоту). */
+  document.addEventListener('DOMContentLoaded', function initPendingCart() {
+    const KEY = 'elvora:pending-cart';
+    let queue;
+    try {
+      queue = JSON.parse(sessionStorage.getItem(KEY) || '[]');
+      sessionStorage.removeItem(KEY);
+    } catch (e) {
+      return;
+    }
+    if (!Array.isArray(queue) || !queue.length) return;
+
+    queue.forEach(item => {
+      if (!item || !item.name) return;
+      addToCart(item.name, parseInt(item.volume, 10) || 0, parseInt(item.price, 10) || 0);
+    });
+  });
 })();
 
 /* ─────────────────────────────────────────
