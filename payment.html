@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Оплата, доставка и возврат — ELVORA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=70" />
+</head>
+<body class="product-page">
+
+  <nav class="nav anim-nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span>
+          <span class="nav__logo-text">ELVORA</span>
+          <span class="nav__logo-mark">натуральные масла</span>
+        </span>
+      </a>
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="index.html#catalog" class="nav__link">Каталог</a></li>
+        <li><a href="index.html#about" class="nav__link">О бренде</a></li>
+        <li><a href="payment.html" class="nav__link">Оплата и доставка</a></li>
+        <li><a href="index.html#contacts" class="nav__link">Контакты</a></li>
+        <li class="nav__menu-cta-item"><a href="index.html#checkout" class="nav__mobile-cta">Заказать</a></li>
+      </ul>
+      <a href="index.html#checkout" class="nav__cta">Заказать</a>
+      <button class="nav__burger" id="nav-burger" aria-label="Меню" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="legal">
+    <div class="legal__container">
+
+      <nav class="legal__crumbs" aria-label="Навигация">
+        <a href="index.html">Главная</a>
+        <span>/</span>
+        <span>Оплата, доставка и возврат</span>
+      </nav>
+
+      <h1 class="legal__title">Оплата, доставка и возврат</h1>
+      <p class="legal__updated">Как оформить заказ, оплатить его и вернуть товар</p>
+
+      <section class="legal__card">
+        <h2>Как оформить заказ</h2>
+        <ul class="legal__list">
+          <li>Выберите масло в каталоге и нужный объём — 100, 250 или 500 мл.</li>
+          <li>Добавьте товар в корзину и перейдите к оформлению заказа.</li>
+          <li>Укажите имя, контактный телефон и адрес доставки.</li>
+          <li>Оплатите заказ банковской картой.</li>
+          <li>Мы свяжемся с вами по указанному телефону для подтверждения заказа и согласования доставки.</li>
+        </ul>
+      </section>
+
+      <section class="legal__card">
+        <h2>Способы оплаты</h2>
+        <p>Оплата производится банковскими картами платёжных систем VISA и Mastercard, выпущенными банками Республики Казахстан.</p>
+        <div class="paycards" style="margin: 18px 0;">
+          <span class="paycards__item"><span class="paycards__visa">VISA</span></span>
+          <span class="paycards__item" aria-label="Mastercard">
+            <svg width="38" height="24" viewBox="0 0 38 24" role="img" aria-label="Mastercard">
+              <circle cx="14" cy="12" r="8.5" fill="#EB001B"/>
+              <circle cx="24" cy="12" r="8.5" fill="#F79E1B" fill-opacity="0.9"/>
+            </svg>
+          </span>
+        </div>
+        <p>Все цены на сайте указаны в тенге (₸) Республики Казахстан.</p>
+
+        <h3>Как проходит платёж</h3>
+        <ul class="legal__list">
+          <li>После оформления заказа вы попадаете на защищённую платёжную страницу платёжного оператора.</li>
+          <li>Вводите данные карты: номер, срок действия и защитный код CVV/CVC.</li>
+          <li>Банк, выпустивший карту, может запросить подтверждение по технологии 3-D Secure — как правило, это код из СМС.</li>
+          <li>После успешной оплаты вы возвращаетесь на сайт и получаете подтверждение заказа.</li>
+        </ul>
+
+        <h3>Безопасность платежей</h3>
+        <div class="legal__note">
+          <p>Данные вашей банковской карты вводятся на стороне платёжного оператора и <strong>не передаются нам и не хранятся на нашем сайте</strong>. Мы получаем только сведения о результате платежа. Соединение защищено шифрованием.</p>
+        </div>
+        <p>Если платёж не прошёл, деньги остаются на вашей карте. Повторите попытку или свяжитесь с нами — поможем разобраться.</p>
+      </section>
+
+      <section class="legal__card">
+        <h2>Доставка</h2>
+        <p>Доставка осуществляется по территории Республики Казахстан.</p>
+        <p>Способ доставки, срок и стоимость мы согласовываем с вами индивидуально при подтверждении заказа — это зависит от вашего города и объёма заказа. Стоимость доставки в цену товара не входит.</p>
+
+        <h3>При получении заказа</h3>
+        <ul class="legal__list">
+          <li>Проверьте целостность упаковки и бутылок.</li>
+          <li>Убедитесь, что состав заказа соответствует оформленному.</li>
+          <li>Проверьте срок годности на этикетке.</li>
+        </ul>
+        <p>Если что-то не так — сообщите нам сразу, до того как курьер уедет. Так вопрос решится быстрее всего.</p>
+      </section>
+
+      <section class="legal__card">
+        <h2>Возврат товара</h2>
+
+        <h3>Отказ от заказа до получения</h3>
+        <p>Вы можете отказаться от заказа в любой момент до его передачи вам. Деньги вернём полностью.</p>
+
+        <h3>Товар ненадлежащего качества</h3>
+        <p>Если товар пришёл с повреждённой упаковкой, истёкшим сроком годности или не соответствует заказу — мы заменим его или вернём деньги в полном объёме. Обратиться можно в течение 14 календарных дней с момента получения заказа.</p>
+
+        <div class="legal__note">
+          <p>Пищевая продукция надлежащего качества, у которой не нарушена целостность упаковки, возврату и обмену не подлежит. Но если ситуация спорная — напишите нам, мы рассматриваем каждое обращение индивидуально.</p>
+        </div>
+
+        <h3>Как оформить возврат</h3>
+        <ul class="legal__list">
+          <li>Свяжитесь с нами по WhatsApp или телефону <a href="tel:+77055587437">+7 705 558 7437</a>, либо напишите на <a href="mailto:elvora.connect@gmail.com">elvora.connect@gmail.com</a>.</li>
+          <li>Опишите проблему и приложите фотографии товара и упаковки — это ускорит рассмотрение.</li>
+          <li>Мы согласуем с вами порядок замены или возврата.</li>
+        </ul>
+
+        <h3>Возврат денежных средств</h3>
+        <p>Деньги возвращаются тем же способом, которым была произведена оплата — на ту же банковскую карту, с которой оплачивался заказ. Возврат на другую карту или наличными не производится.</p>
+        <p>Срок зачисления зависит от банка, выпустившего карту, и обычно составляет от 3 до 30 календарных дней с момента подтверждения возврата.</p>
+      </section>
+
+      <section class="legal__card">
+        <h2>Связаться с нами</h2>
+        <table class="legal__req">
+          <tr><th>Телефон и WhatsApp</th><td><a href="tel:+77055587437">+7 705 558 7437</a></td></tr>
+          <tr><th>Электронная почта</th><td><a href="mailto:elvora.connect@gmail.com">elvora.connect@gmail.com</a></td></tr>
+          <tr><th>Продавец</th><td>ИП «LineKristi», ИИН 891101451046</td></tr>
+          <tr><th>Юридический адрес</th><td>Республика Казахстан, г. Костанай, ул. Фролова, 140А</td></tr>
+          <tr><th>Производство</th><td>Республика Казахстан, г. Костанай, ул. Карбышева, 95</td></tr>
+        </table>
+        <p style="margin-top:16px;">Полные условия продажи изложены в <a href="oferta.html">Публичной оферте</a>. Порядок обработки ваших данных — в <a href="privacy.html">Политике конфиденциальности</a>.</p>
+      </section>
+
+      <a class="legal__back" href="index.html">← Вернуться на главную</a>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__bottom" style="border-top: 0;">
+      <div class="footer__container">
+        <p class="footer__copy">© 2026 ELVORA · ИП «LineKristi» · ИИН 891101451046</p>
+        <div class="footer__bottom-row">
+          <div class="footer__legal-links">
+            <a href="oferta.html" class="footer__legal-link">Публичная оферта</a>
+            <a href="privacy.html" class="footer__legal-link">Политика конфиденциальности</a>
+            <a href="payment.html" class="footer__legal-link">Оплата, доставка и возврат</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="product.js?v=3"></script>
+</body>
+</html>

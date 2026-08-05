@@ -4140,3 +4140,183 @@ ul { list-style: none; }
   .pdp__related-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pdp__related-card img { height: 100px; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   ЮРИДИЧЕСКИЕ СТРАНИЦЫ — оферта, конфиденциальность,
+   оплата/доставка/возврат. Общий каркас для всех трёх.
+═══════════════════════════════════════════════════════════ */
+.legal {
+  position: relative;
+  padding: calc(var(--nav-h) + 44px) 0 90px;
+  background: #000;
+  min-height: 100vh;
+}
+.legal__container {
+  width: min(880px, calc(100% - 48px));
+  margin: 0 auto;
+}
+.legal__crumbs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 26px;
+  flex-wrap: wrap;
+}
+.legal__crumbs a { color: rgba(255,255,255,0.6); transition: color 0.25s ease; }
+.legal__crumbs a:hover { color: var(--gold-light); }
+
+.legal__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  line-height: 1.15;
+  background: var(--grad-gold-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 14px;
+}
+.legal__updated {
+  font-size: 13px;
+  color: rgba(255,255,255,0.42);
+  margin-bottom: 34px;
+}
+
+/* Плашка — та же стеклянная подача, что в «Оформлении» и карточке товара */
+.legal__card {
+  border: 1.5px solid rgba(212,179,106, 0.35);
+  border-radius: 20px;
+  background: rgba(10,10,10, 0.34);
+  backdrop-filter: blur(9px) saturate(120%);
+  -webkit-backdrop-filter: blur(9px) saturate(120%);
+  padding: 30px 32px;
+  margin-bottom: 20px;
+}
+.legal__card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(19px, 2.2vw, 24px);
+  font-weight: 700;
+  color: var(--gold-light);
+  margin-bottom: 16px;
+}
+.legal__card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin: 22px 0 10px;
+}
+.legal__card p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 14px;
+}
+.legal__card p:last-child { margin-bottom: 0; }
+.legal__card a { color: var(--gold-light); text-decoration: underline; text-underline-offset: 3px; }
+
+.legal__list { margin: 0 0 14px; padding: 0; }
+.legal__list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 10px;
+}
+.legal__list li::before {
+  content: '◊';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--gold);
+  font-size: 12px;
+  line-height: 1.9;
+}
+.legal__list li:last-child { margin-bottom: 0; }
+
+/* Таблица реквизитов */
+.legal__req { width: 100%; border-collapse: collapse; }
+.legal__req tr { border-bottom: 1px solid rgba(212,179,106, 0.14); }
+.legal__req tr:last-child { border-bottom: 0; }
+.legal__req th {
+  text-align: left;
+  vertical-align: top;
+  padding: 12px 18px 12px 0;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  white-space: nowrap;
+  width: 42%;
+}
+.legal__req td {
+  padding: 12px 0;
+  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+}
+
+/* Заметная плашка-предупреждение внутри текста */
+.legal__note {
+  border-left: 3px solid var(--gold);
+  background: rgba(212,179,106, 0.07);
+  border-radius: 0 10px 10px 0;
+  padding: 16px 20px;
+  margin: 18px 0;
+}
+.legal__note p { margin-bottom: 0; font-size: 14.5px; }
+
+.legal__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  transition: color 0.25s ease;
+}
+.legal__back:hover { color: var(--gold-light); }
+
+/* Логотипы платёжных систем — требование эквайринга */
+.paycards {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.paycards__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  min-width: 56px;
+  padding: 0 12px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 7px;
+  background: rgba(255,255,255,0.05);
+}
+.paycards__visa {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .legal { padding: calc(var(--nav-h) + 28px) 0 64px; }
+  .legal__container { width: calc(100% - 32px); }
+  .legal__card { padding: 22px 20px; border-radius: 16px; }
+  .legal__req th {
+    display: block;
+    width: auto;
+    white-space: normal;
+    padding: 12px 0 2px;
+  }
+  .legal__req td { display: block; padding: 0 0 12px; }
+}
