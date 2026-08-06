@@ -319,6 +319,7 @@ body {
 }
 .citem__price input:focus { outline: none; border-color: var(--accent); }
 
+.citem__stock-group { display: flex; gap: 8px; }
 .citem__stock { display: flex; flex-direction: column; gap: 4px; font-size: 10.5px; color: var(--txt-dim); }
 .citem__stock input {
   width: 64px;

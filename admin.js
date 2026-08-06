@@ -455,19 +455,27 @@
       prices.appendChild(wrap);
     });
 
-    const stockWrap = document.createElement('label');
-    stockWrap.className = 'citem__stock';
-    stockWrap.append('Остаток');
-    const stockInput = document.createElement('input');
-    stockInput.type = 'number';
-    stockInput.min = '0';
-    stockInput.placeholder = '—';
-    stockInput.value = (p.stock === null || p.stock === undefined) ? '' : p.stock;
-    stockInput.addEventListener('change', () => {
-      const v = stockInput.value === '' ? null : (parseInt(stockInput.value, 10) || 0);
-      queueCatalogSave(p.id, { stock: v }, status);
+    const stockWrap = document.createElement('div');
+    stockWrap.className = 'citem__stock-group';
+    if (!p.stock || typeof p.stock !== 'object') {
+      p.stock = { '100': 0, '250': 0, '500': 0 };
+    }
+    ['100', '250', '500'].forEach(vol => {
+      const label = document.createElement('label');
+      label.className = 'citem__stock';
+      label.append('Остаток ' + vol + 'мл');
+      const input = document.createElement('input');
+      input.type = 'number';
+      input.min = '0';
+      input.placeholder = '0';
+      input.value = p.stock[vol] || 0;
+      input.addEventListener('change', () => {
+        p.stock[vol] = parseInt(input.value, 10) || 0;
+        queueCatalogSave(p.id, { stock: p.stock }, status);
+      });
+      label.appendChild(input);
+      stockWrap.appendChild(label);
     });
-    stockWrap.appendChild(stockInput);
 
     const toggles = document.createElement('div');
     toggles.className = 'citem__toggles';

@@ -160,11 +160,12 @@
     card.dataset.product = p.id;
     if (p.available === false) card.classList.add('catalog__card--out');
 
-    if (p.stock !== null && p.stock !== undefined && p.stock !== '') {
-      const stock = document.createElement('span');
-      stock.className = 'catalog__stock';
-      stock.textContent = p.stock + ' шт.';
-      card.appendChild(stock);
+    const stockData = (p.stock && typeof p.stock === 'object') ? p.stock : null;
+    let stockEl = null;
+    if (stockData) {
+      stockEl = document.createElement('span');
+      stockEl.className = 'catalog__stock';
+      card.appendChild(stockEl);
     }
 
     const imgWrap = document.createElement('div');
@@ -280,15 +281,24 @@
       }
     }
 
+    function showStock(vol) {
+      if (!stockEl) return;
+      const count = parseInt(stockData[vol], 10) || 0;
+      stockEl.textContent = count + ' шт.';
+      stockEl.classList.toggle('catalog__stock--out', count === 0);
+    }
+
     volBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         volBtns.forEach(b => b.classList.remove('is-active'));
         btn.classList.add('is-active');
         showBottle(btn.dataset.vol);
         showPrice(btn);
+        showStock(btn.dataset.vol);
       });
     });
     showPrice(volRow.querySelector('.catalog__vol[data-vol="500"]'));
+    showStock('500');
 
     if (p.available !== false) {
       buyBtn.addEventListener('click', () => {

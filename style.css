@@ -1217,6 +1217,10 @@ ul { list-style: none; }
   letter-spacing: 0.04em;
   backdrop-filter: blur(4px);
 }
+.catalog__stock--out {
+  border-color: rgba(255,107,107,0.4);
+  color: #FF9B9B;
+}
 
 /* Товар не в наличии — карточка гаснет, кнопки некликабельны,
    поверх бутылки — затемняющая плашка с надписью. */
