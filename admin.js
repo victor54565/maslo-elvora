@@ -610,7 +610,7 @@
 
     const toggles = document.createElement('div');
     toggles.className = 'sitem__toggles';
-    toggles.appendChild(mkToggle('Показывать', s.visible !== false, val => {
+    toggles.appendChild(buildToggle('Показывать', s.visible !== false, val => {
       item.classList.toggle('sitem--hidden', !val);
       queueSocialSave(s.id, { visible: val }, status);
     }));
