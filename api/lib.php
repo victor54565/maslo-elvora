@@ -179,26 +179,35 @@ function save_catalog(array $cfg, array $products): bool
  * Приводит присланные из админки правки товара к безопасному виду.
  * Админка правит только доступность/остаток/цены — название, группу
  * и порядок трогать нельзя (эти поля заданы каталогом, а не формой).
+ *
+ * Остатки: { "100": N, "250": M, "500": K } — целые числа >= 0.
  */
 function sanitize_catalog_patch(array $v): array
 {
-    $toIntOrNull = static function ($val) {
-        if ($val === null || $val === '') {
-            return null;
-        }
-        $n = (int) $val;
-        return $n < 0 ? 0 : $n;
+    $toInt = static function ($val) {
+        return max(0, (int) $val);
     };
 
     $patch = [];
     foreach (['price100', 'price250', 'price500'] as $key) {
         if (array_key_exists($key, $v)) {
-            $patch[$key] = max(0, (int) $v[$key]);
+            $patch[$key] = $toInt($v[$key]);
         }
     }
-    if (array_key_exists('stock', $v)) {
-        $patch['stock'] = $toIntOrNull($v['stock']);
+
+    // Новая структура stock: массив { "100": N, "250": M, "500": K }
+    if (array_key_exists('stock', $v) && is_array($v['stock'])) {
+        $stock = [];
+        foreach (['100', '250', '500'] as $vol) {
+            if (array_key_exists($vol, $v['stock'])) {
+                $stock[$vol] = $toInt($v['stock'][$vol]);
+            }
+        }
+        if (!empty($stock)) {
+            $patch['stock'] = $stock;
+        }
     }
+
     if (array_key_exists('available', $v)) {
         $patch['available'] = (bool) $v['available'];
     }

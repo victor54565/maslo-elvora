@@ -585,14 +585,34 @@ window.addEventListener('pageshow', (e) => {
     return message;
   }
 
-  const whatsappBtn = document.getElementById('whatsapp-btn');
-  if (whatsappBtn) {
-    whatsappBtn.addEventListener('click', () => {
-      const message = generateWhatsAppMessage();
-      if (message) {
-        const encoded = encodeURIComponent(message);
-        window.open(`https://wa.me/77712815115?text=${encoded}`, '_blank');
+  const submitBtn = document.getElementById('checkout-submit-btn');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', () => {
+      const name = document.getElementById('customer-name').value.trim();
+      const city = document.querySelector('#customer-city .checkout__dropdown-value').textContent;
+      const payment = document.querySelector('#payment-method .checkout__dropdown-value').textContent;
+
+      if (!name) {
+        alert('Пожалуйста, введите ваше имя');
+        return;
       }
+      if (city === 'Выберите город') {
+        alert('Пожалуйста, выберите город доставки');
+        return;
+      }
+      if (payment === 'Выберите способ') {
+        alert('Пожалуйста, выберите способ оплаты');
+        return;
+      }
+      if (cart.length === 0) {
+        alert('Ваша корзина пуста');
+        return;
+      }
+
+      // Временно: отправляем на Freedom Pay (будет настроена позже)
+      // Сейчас - просто уведомление об оформлении
+      const total = document.getElementById('total-price').textContent;
+      alert(`Заказ на сумму ${total}\nПринят на оформление.\n\nВскоре будет доступна оплата через Freedom Pay.\n\nВ ожидании можно связаться: +7 705 558 7437`);
     });
   }
 

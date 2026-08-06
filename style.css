@@ -3058,7 +3058,7 @@ ul { list-style: none; }
   border-radius: 6px;
 }
 
-.checkout__whatsapp-btn {
+.checkout__submit-btn {
   margin-top: auto;
   padding: 14px 24px;
   background: var(--grad-gold-text);
@@ -3076,14 +3076,14 @@ ul { list-style: none; }
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
-.checkout__whatsapp-btn:hover {
+.checkout__submit-btn:hover {
   box-shadow: 0 0 24px rgba(212,179,106,0.42);
   transform: translateY(-2px);
 }
-.checkout__whatsapp-btn:active {
+.checkout__submit-btn:active {
   transform: translateY(0);
 }
-.checkout__whatsapp-icon {
+.checkout__submit-icon {
   width: 20px;
   height: 20px;
 }
@@ -3139,12 +3139,12 @@ ul { list-style: none; }
 
 /* Бегущий блик по главным кнопкам */
 .catalog__buy,
-.checkout__whatsapp-btn {
+.checkout__submit-btn {
   position: relative;
   overflow: hidden;
 }
 .catalog__buy::after,
-.checkout__whatsapp-btn::after {
+.checkout__submit-btn::after {
   content: "";
   position: absolute;
   top: 0; left: 0;
@@ -3159,7 +3159,7 @@ ul { list-style: none; }
   z-index: 2;
 }
 .catalog__buy:hover::after,
-.checkout__whatsapp-btn:hover::after {
+.checkout__submit-btn:hover::after {
   animation: shimmerSweep 0.9s ease;
 }
 
@@ -3214,7 +3214,7 @@ ul { list-style: none; }
    заметной "остановки"/паузы на каком-либо цвете. */
 /* .catalog__buy сюда НЕ входит: у карточек каталога кнопка контурная,
    заливка появляется только на hover (см. блок BLOCK 3 — CATALOG). */
-.btn--primary, .checkout__whatsapp-btn {
+.btn--primary, .checkout__submit-btn {
   background-image: linear-gradient(120deg,
     #D4B36A 0%,
     #E8CE96 12%,
@@ -3248,7 +3248,7 @@ ul { list-style: none; }
   .usage__title em, .reviews__title em,
   .checkout__title, .reviews__avg, .usage__step, .reviews__product,
   .checkout__item-price, .checkout__total-price, .benefits__card-num,
-  .btn--primary, .catalog__buy, .checkout__whatsapp-btn,
+  .btn--primary, .catalog__buy, .checkout__submit-btn,
   .benefits__card-line, .usage__dot.is-active, .benefits__card.is-active {
     animation: none !important;
   }

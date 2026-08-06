@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Админ панель — Каталог ELVORA</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #fff; padding: 20px; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    h1 { margin-bottom: 30px; color: #D4B36A; }
+    table { width: 100%; border-collapse: collapse; background: #111; border: 1px solid #333; margin-bottom: 30px; }
+    th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #222; }
+    th { background: #1a1a1a; font-weight: 600; color: #D4B36A; }
+    tr:hover { background: #151515; }
+    input { width: 70px; padding: 6px 8px; background: #222; border: 1px solid #333; color: #fff; border-radius: 4px; font-size: 13px; }
+    input:focus { outline: none; border-color: #D4B36A; background: #1a1a1a; }
+    button { padding: 10px 20px; background: #D4B36A; color: #000; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; }
+    button:hover { background: #E8C878; }
+    .save-btn { background: #4CAF50; color: white; }
+    .save-btn:hover { background: #45a049; }
+    .status { padding: 15px; border-radius: 6px; margin-bottom: 20px; text-align: center; }
+    .status.success { background: #1B5E20; color: #4CAF50; }
+    .status.error { background: #5E1B1B; color: #FF6B6B; }
+    .group-header { background: #1a1a1a; font-weight: 700; color: #D4B36A; }
+    .info { color: #888; font-size: 12px; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📦 Администратор каталога ELVORA</h1>
+
+    <div id="status" class="status" style="display: none;"></div>
+
+    <p class="info">Редактируйте цены и остатки товаров. Остатки указываются штуками для каждого объёма.</p>
+
+    <table id="catalog-table">
+      <thead>
+        <tr>
+          <th>Название</th>
+          <th colspan="3">Цена (₸)</th>
+          <th colspan="3">Остаток (шт)</th>
+          <th>Действие</th>
+        </tr>
+        <tr>
+          <th></th>
+          <th>100мл</th>
+          <th>250мл</th>
+          <th>500мл</th>
+          <th>100мл</th>
+          <th>250мл</th>
+          <th>500мл</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+
+    <button class="save-btn" onclick="saveAll()">💾 Сохранить все</button>
+  </div>
+
+  <script>
+    let catalog = [];
+    let changes = {};
+
+    async function loadCatalog() {
+      try {
+        const res = await fetch('data/catalog.json');
+        catalog = (await res.json()).products;
+        renderTable();
+      } catch (e) {
+        showStatus('Ошибка загрузки каталога: ' + e.message, 'error');
+      }
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('tbody');
+      tbody.innerHTML = '';
+
+      let currentGroup = '';
+      catalog.forEach((item, idx) => {
+        if (item.group !== currentGroup) {
+          currentGroup = item.group;
+          const tr = document.createElement('tr');
+          tr.className = 'group-header';
+          tr.innerHTML = `<td colspan="8">${currentGroup}</td>`;
+          tbody.appendChild(tr);
+        }
+
+        const tr = document.createElement('tr');
+        const stock = item.stock || { '100': 0, '250': 0, '500': 0 };
+
+        tr.innerHTML = `
+          <td><strong>${item.name}</strong></td>
+          <td><input type="number" id="p100-${idx}" value="${item.price100 || 0}" onchange="track(${idx}, 'p100')" /></td>
+          <td><input type="number" id="p250-${idx}" value="${item.price250 || 0}" onchange="track(${idx}, 'p250')" /></td>
+          <td><input type="number" id="p500-${idx}" value="${item.price500 || 0}" onchange="track(${idx}, 'p500')" /></td>
+          <td><input type="number" id="s100-${idx}" value="${stock['100'] || 0}" onchange="track(${idx}, 's100')" /></td>
+          <td><input type="number" id="s250-${idx}" value="${stock['250'] || 0}" onchange="track(${idx}, 's250')" /></td>
+          <td><input type="number" id="s500-${idx}" value="${stock['500'] || 0}" onchange="track(${idx}, 's500')" /></td>
+          <td><button onclick="reset(${idx})">↻</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function track(idx, field) {
+      if (!changes[idx]) changes[idx] = {};
+      const val = parseInt(document.getElementById(field + '-' + idx).value, 10) || 0;
+      changes[idx][field] = val;
+    }
+
+    function reset(idx) {
+      delete changes[idx];
+      renderTable();
+    }
+
+    async function saveAll() {
+      if (Object.keys(changes).length === 0) {
+        showStatus('Изменений не найдено', 'error');
+        return;
+      }
+
+      try {
+        // Применяем изменения к каталогу
+        Object.keys(changes).forEach(idx => {
+          const chg = changes[idx];
+          if (chg.p100 !== undefined) catalog[idx].price100 = chg.p100;
+          if (chg.p250 !== undefined) catalog[idx].price250 = chg.p250;
+          if (chg.p500 !== undefined) catalog[idx].price500 = chg.p500;
+
+          if (!catalog[idx].stock) catalog[idx].stock = {};
+          if (chg.s100 !== undefined) catalog[idx].stock['100'] = chg.s100;
+          if (chg.s250 !== undefined) catalog[idx].stock['250'] = chg.s250;
+          if (chg.s500 !== undefined) catalog[idx].stock['500'] = chg.s500;
+        });
+
+        // Отправляем на сервер
+        const res = await fetch('api/catalog.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ products: catalog })
+        });
+
+        const result = await res.json();
+        if (result.ok) {
+          showStatus('✓ Сохранено ' + Object.keys(changes).length + ' товаров', 'success');
+          changes = {};
+          renderTable();
+        } else {
+          showStatus('Ошибка сервера: ' + (result.error || 'неизвестная ошибка'), 'error');
+        }
+      } catch (e) {
+        showStatus('Ошибка при сохранении: ' + e.message, 'error');
+      }
+    }
+
+    function showStatus(msg, type) {
+      const el = document.getElementById('status');
+      el.className = 'status ' + type;
+      el.textContent = msg;
+      el.style.display = 'block';
+      setTimeout(() => { el.style.display = 'none'; }, 5000);
+    }
+
+    loadCatalog();
+  </script>
+</body>
+</html>
