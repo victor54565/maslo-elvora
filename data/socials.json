@@ -9,31 +9,31 @@
         {
             "id": "telegram",
             "label": "Telegram",
-            "url": "https://t.me/mirotvorec12",
+            "url": "",
             "visible": true
         },
         {
             "id": "facebook",
             "label": "Facebook",
-            "url": "https://www.facebook.com/reel/1694674738243918/",
+            "url": "",
             "visible": true
         },
         {
             "id": "instagram",
             "label": "Instagram",
-            "url": "https://www.instagram.com/pasko.mikhail1206?igsh=MTAwY3ZqcW9mOGk1dA==",
+            "url": "",
             "visible": true
         },
         {
             "id": "youtube",
             "label": "YouTube",
-            "url": "https://youtube.com/@paskomikhail?si=u4jXpyT2UPWQM1IV",
+            "url": "",
             "visible": true
         },
         {
             "id": "tiktok",
             "label": "TikTok",
-            "url": "https://www.tiktok.com/@paskomikhail1?_r=1",
+            "url": "",
             "visible": true
         }
     ]
